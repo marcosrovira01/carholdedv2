@@ -8,6 +8,7 @@ Esta clase servirá para gestionar la ventana Login de la aplicación.
 import os
 import tkinter
 from tkinter import *
+from PIL import ImageTk, Image
 from conexionBaseDatos.BaseDatosLogin import *
 from gui.aplicacionPrincipal.VentanaPrincipal import *
 
@@ -129,9 +130,21 @@ class FormularioLogin:
         bLogin = Button(ventanaLogin, text="Iniciar Sesión", height="3", width="30", bg="white", fg="navy", font="Calibri", 
                         command=login)
         bLogin.place(x =150, y = 270, width=200, height=50)
+
+        """
+        10. Añadimos un botón que dará la opción al usuario de volver atrás:
+        """
+        #Primero definimos un método que nos permitirá volver atrás:
+        def volverAtras():
+            ventanaLogin.destroy()
+            self.__menuFormulario.deiconify()
+
+        #A continuación, declaramos el botón que nos permitirá llevar a cabo la acción del método:
+        bVolverAtras=Button(ventanaLogin, text="Volver atrás", height="3", width="30", bg="white", fg="navy", font="Calibri", command=volverAtras)
+        bVolverAtras.place(x=150, y=330, width=200, height=50)
         
         """
-        10. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
+        11. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
         usuario realice algún evento.
         """
         ventanaLogin.mainloop()

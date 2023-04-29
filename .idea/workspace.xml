@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Añadido icono de volver atrás al repositorio del proyecto.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioLogin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iconos/volver_atras.png" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,13 +31,16 @@
     </option>
   </component>
   <component name="ProjectId" id="2P6j9EQrPK5gi6tIDxN5f4sxbm5" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -79,14 +86,23 @@
       <option name="project" value="LOCAL" />
       <updated>1682787311778</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Añadido icono de volver atrás al repositorio del proyecto.">
+      <created>1682787674214</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682787674214</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Primer commit del proyecto base" />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del login." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del registro." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
+    <MESSAGE value="Añadido icono de volver atrás al repositorio del proyecto." />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido icono de volver atrás al repositorio del proyecto." />
   </component>
 </project>
