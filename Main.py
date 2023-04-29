@@ -37,7 +37,7 @@ def menuPrincipal():
     será global, por lo que lo podremos usar en cualquier parte de nuestro
     código:
     """
-    
+
     global menuFormulario 
     
     menuFormulario= Tk(className="Carholded");
@@ -60,8 +60,9 @@ def menuPrincipal():
     estar en formato .png. Para ello, concatenamos el directorio de trabajo con la carpeta en 
     donde se encuentra nuestra imagen. En este caso, en /imagenes/coche.png.
     """
-    menuFormulario.iconphoto(False, PhotoImage(file=directorioDeTrabajo + "/imagenes/coche.png"))
-    
+    imagen_coche = PhotoImage(file=directorioDeTrabajo + "/imagenes/coche.png")
+    menuFormulario.iconphoto(False, imagen_coche)
+
     """
     4. Creamos una imagen con la clase PhotoImage, y la redimensionamos
     con el método subsample(escala x, escala y). Posteriormente, la introducimos en el label

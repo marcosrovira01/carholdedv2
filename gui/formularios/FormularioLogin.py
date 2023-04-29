@@ -5,10 +5,10 @@ Created on 2 feb 2023
 
 Esta clase servirá para gestionar la ventana Login de la aplicación.
 '''
+import subprocess
 import os
 import tkinter
 from tkinter import *
-from PIL import ImageTk, Image
 from conexionBaseDatos.BaseDatosLogin import *
 from gui.aplicacionPrincipal.VentanaPrincipal import *
 
@@ -36,7 +36,7 @@ class FormularioLogin:
         
         ventanaLogin=Tk(className="Carholded")
         ventanaLogin.resizable(0,0)
-        ventanaLogin.geometry("500x400")
+        ventanaLogin.geometry("500x430")
         ventanaLogin.title("Carholded 1.0 - Login")
         ventanaLogin.configure(bg="navy")
         
@@ -136,8 +136,12 @@ class FormularioLogin:
         """
         #Primero definimos un método que nos permitirá volver atrás:
         def volverAtras():
+
+            #Destruimos la ventana actual, es decir, ventanaLogin.
             ventanaLogin.destroy()
-            self.__menuFormulario.deiconify()
+
+            #Con la clase subprocess y el método call, llamamos a un proceso de python. Esto lo hacemos para volver a ejecutar la ventana principal del programa:
+            subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
 
         #A continuación, declaramos el botón que nos permitirá llevar a cabo la acción del método:
         bVolverAtras=Button(ventanaLogin, text="Volver atrás", height="3", width="30", bg="white", fg="navy", font="Calibri", command=volverAtras)
