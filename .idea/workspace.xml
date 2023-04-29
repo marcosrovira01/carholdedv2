@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Primer commit del proyecto base">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionada conexión con nueva base de datos respeto del login.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosLogin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,11 +48,19 @@
       <option name="project" value="LOCAL" />
       <updated>1682784410092</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Solucionada conexión con nueva base de datos respeto del login.">
+      <created>1682786442655</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682786442656</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer commit del proyecto base" />
-    <option name="LAST_COMMIT_MESSAGE" value="Primer commit del proyecto base" />
+    <MESSAGE value="Solucionada conexión con nueva base de datos respeto del login." />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionada conexión con nueva base de datos respeto del login." />
   </component>
 </project>
