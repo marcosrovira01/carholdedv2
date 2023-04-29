@@ -5,6 +5,7 @@ Created on 2 feb 2023
 
 Esta clase servirá para gestionar la ventana de borrado de cuentas de la aplicación
 '''
+import subprocess
 import os
 import tkinter
 from tkinter import *
@@ -34,7 +35,7 @@ class FormularioBorrado:
         
         ventanaBorrado=Tk(className="Carholded")
         ventanaBorrado.resizable(0,0)
-        ventanaBorrado.geometry("500x400")
+        ventanaBorrado.geometry("500x430")
         ventanaBorrado.title("Carholded 1.0 - Eliminar Cuenta")
         ventanaBorrado.configure(bg="navy")
         
@@ -120,12 +121,28 @@ class FormularioBorrado:
         """
         9. Añadimos un botón, que realizará una consulta a la base de datos en base al método borrado():
         """
-        bLogin = Button(ventanaBorrado, text="Borrar Cuenta", height="3", width="30", bg="white", fg="navy", font="Calibri", 
+        bBorrado = Button(ventanaBorrado, text="Borrar Cuenta", height="3", width="30", bg="white", fg="navy", font="Calibri",
                         command=borrado)
-        bLogin.place(x =150, y = 270, width=200, height=50)
+        bBorrado.place(x =150, y = 270, width=200, height=50)
+
+        """
+        10. Añadimos un botón que dará la opción al usuario de volver atrás:
+        """
+        #Primero definimos un método que nos permitirá volver atrás:
+        def volverAtras():
+
+            #Destruimos la ventana actual, es decir, ventanaBorrado.
+            ventanaBorrado.destroy()
+
+            #Con la clase subprocess y el método call, llamamos a un proceso de python. Esto lo hacemos para volver a ejecutar la ventana principal del programa:
+            subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
+
+        #A continuación, declaramos el botón que nos permitirá llevar a cabo la acción del método:
+        bVolverAtras=Button(ventanaBorrado, text="Volver atrás", height="3", width="30", bg="white", fg="navy", font="Calibri", command=volverAtras)
+        bVolverAtras.place(x=150, y=330, width=200, height=50)
         
         """
-        10. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
+        11. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
         usuario realice algún evento.
         """
         ventanaBorrado.mainloop()
