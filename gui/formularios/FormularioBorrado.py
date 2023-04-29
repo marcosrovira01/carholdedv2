@@ -5,10 +5,11 @@ Created on 2 feb 2023
 
 Esta clase servirá para gestionar la ventana de borrado de cuentas de la aplicación
 '''
+
 import subprocess
 import os
-import tkinter
 from tkinter import *
+from tkinter import messagebox
 from conexionBaseDatos.BaseDatosEliminacion import *
 
 
@@ -93,31 +94,35 @@ class FormularioBorrado:
         presionarlo. Dicha función se llamará borrado()
         """
         def borrado():
-            
             """
-            Definimos un nuevo objeto de la clase BaseDatosEliminacion y le pasamos los datos correo y contraseña recopilados
-            en el formulario. Los datos introducidos en los Entry los recopilamos con el método .get():
+            Primero, preguntamos al usuario si realmente está seguro de que quiere borrar su cuenta:
             """
-            correo=correoUsuario.get()
-            contraseña=contraseñaUsuario.get()
-            conexion=BaseDatosEliminacion(correo, contraseña)
-            
-            """
-            A continuación, ejecutamos el método conexionBaseDatosEliminacion(), que ejecutará una validación de datos del usuario. Si
-            es correcto, devuelve True y un mensaje que dice que se ha completado con éxito el borrado de datos. Si no lo es, devuelve False y
-            otro mensaje diciendo que el usuario no ha sido eliminado. Dicho booleano lo almacenaremos en la variable correcto
-            """
-            correcto=conexion.conexionBaseDatosEliminacion()
-            
-            if correcto:
-                #si todo ha ido bien, destruimos la ventana actual y volvemos a abrir la ventana principal del programa:
-                ventanaBorrado.destroy()
-                subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
-            else:
-                #si la baja no se ha realizado correctamente, eliminamos todos los campos del formulario para que el usuario lo
-                #vuelva a intentar. Esto lo haremos con el método delete()
-                correoUsuario.delete(0, "end")
-                contraseñaUsuario.delete(0, "end")
+            respuesta = messagebox.askquestion("Eliminar cuenta", "¿Está seguro de que quiere eliminar su cuenta definitivamente?")
+            if respuesta == "yes":
+                """
+                Definimos un nuevo objeto de la clase BaseDatosEliminacion y le pasamos los datos correo y contraseña recopilados
+                en el formulario. Los datos introducidos en los Entry los recopilamos con el método .get():
+                """
+                correo=correoUsuario.get()
+                contraseña=contraseñaUsuario.get()
+                conexion=BaseDatosEliminacion(correo, contraseña)
+
+                """
+                A continuación, ejecutamos el método conexionBaseDatosEliminacion(), que ejecutará una validación de datos del usuario. Si
+                es correcto, devuelve True y un mensaje que dice que se ha completado con éxito el borrado de datos. Si no lo es, devuelve False y
+                otro mensaje diciendo que el usuario no ha sido eliminado. Dicho booleano lo almacenaremos en la variable correcto
+                """
+                correcto=conexion.conexionBaseDatosEliminacion()
+
+                if correcto:
+                    #si todo ha ido bien, destruimos la ventana actual y volvemos a abrir la ventana principal del programa:
+                    ventanaBorrado.destroy()
+                    subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
+                else:
+                    #si la baja no se ha realizado correctamente, eliminamos todos los campos del formulario para que el usuario lo
+                    #vuelva a intentar. Esto lo haremos con el método delete()
+                    correoUsuario.delete(0, "end")
+                    contraseñaUsuario.delete(0, "end")
                 
         """
         9. Añadimos un botón, que realizará una consulta a la base de datos en base al método borrado():

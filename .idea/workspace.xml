@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora, cuando alguien borra su cuenta, en lugar de cerrarse el programa completamente, se cierra la ventana de borrado de cuentas y se abre de nuevo la ventana principal del programa.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioBorrado.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioBorrado.py" afterDir="false" />
     </list>
@@ -127,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682796531864</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ahora, cuando alguien borra su cuenta, en lugar de cerrarse el programa completamente, se cierra la ventana de borrado de cuentas y se abre de nuevo la ventana principal del programa.">
+      <created>1682796847935</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682796847935</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -142,7 +149,8 @@
     <MESSAGE value="Botón volver atrás en formulario de registro implementado (funcional)" />
     <MESSAGE value="Botón volver atrás en formulario de borrado implementado (funcional)" />
     <MESSAGE value="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente." />
+    <MESSAGE value="Ahora, cuando alguien borra su cuenta, en lugar de cerrarse el programa completamente, se cierra la ventana de borrado de cuentas y se abre de nuevo la ventana principal del programa." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ahora, cuando alguien borra su cuenta, en lugar de cerrarse el programa completamente, se cierra la ventana de borrado de cuentas y se abre de nuevo la ventana principal del programa." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
