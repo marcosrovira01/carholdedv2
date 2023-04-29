@@ -110,8 +110,9 @@ class FormularioBorrado:
             correcto=conexion.conexionBaseDatosEliminacion()
             
             if correcto:
-                #si todo ha ido bien, destruimos la ventana actual
+                #si todo ha ido bien, destruimos la ventana actual y volvemos a abrir la ventana principal del programa:
                 ventanaBorrado.destroy()
+                subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
             else:
                 #si la baja no se ha realizado correctamente, eliminamos todos los campos del formulario para que el usuario lo
                 #vuelva a intentar. Esto lo haremos con el método delete()

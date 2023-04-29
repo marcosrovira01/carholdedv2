@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Botón volver atrás en formulario de borrado implementado (funcional)">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioRegistro.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioRegistro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioBorrado.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioBorrado.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682795934968</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente.">
+      <created>1682796531864</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682796531864</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -135,7 +141,8 @@
     <MESSAGE value="Botón volver atrás en formulario login implementado (ahora funcional)" />
     <MESSAGE value="Botón volver atrás en formulario de registro implementado (funcional)" />
     <MESSAGE value="Botón volver atrás en formulario de borrado implementado (funcional)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Botón volver atrás en formulario de borrado implementado (funcional)" />
+    <MESSAGE value="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ahora, cuando se produce un nuevo registro, en lugar de cerrarse el programa completamente, se cierra la ventana de registros y se abre de nuevo la ventana principal del programa, para que el usuario pueda iniciar sesión más cómodamente." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
