@@ -29,14 +29,14 @@ class BaseDatosLogin:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
             
             """
