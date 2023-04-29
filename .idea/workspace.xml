@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Botón volver atrás en formulario login implementado (aún no funcional)">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Botón volver atrás en formulario login implementado (ahora funcional)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioLogin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/formularios/FormularioRegistro.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/formularios/FormularioRegistro.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682789146652</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Botón volver atrás en formulario login implementado (ahora funcional)">
+      <created>1682794807401</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682794807401</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -111,7 +117,8 @@
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
     <MESSAGE value="Añadido icono de volver atrás al repositorio del proyecto." />
     <MESSAGE value="Botón volver atrás en formulario login implementado (aún no funcional)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Botón volver atrás en formulario login implementado (aún no funcional)" />
+    <MESSAGE value="Botón volver atrás en formulario login implementado (ahora funcional)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Botón volver atrás en formulario login implementado (ahora funcional)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

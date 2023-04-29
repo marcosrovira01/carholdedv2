@@ -5,6 +5,7 @@ Created on 2 feb 2023
 
 Esta clase servirá para gestionar la ventana de registro de cuentas de la aplicación
 '''
+import subprocess
 import re
 import os
 import tkinter
@@ -34,7 +35,7 @@ class FormularioRegistro:
         
         ventanaRegistro=Tk(className="Carholded")
         ventanaRegistro.resizable(0,0)
-        ventanaRegistro.geometry("600x900")
+        ventanaRegistro.geometry("600x930")
         ventanaRegistro.title("Carholded 1.0 - Crear una nueva cuenta")
         ventanaRegistro.configure(bg="navy")
         
@@ -215,9 +216,27 @@ class FormularioRegistro:
         """
         bRegistrar = Button(text="Registrarse", height="3", width="30", bg="white", fg="navy", font="Calibri", command=comprobarRegistro)
         bRegistrar.place(x =100, y = 750, width=400, height=60)
-        
+
         """
-        17. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
+        17. Añadimos un botón que dará la opción al usuario de volver atrás:
+        """
+
+        # Primero definimos un método que nos permitirá volver atrás:
+        def volverAtras():
+
+            # Destruimos la ventana actual, es decir, ventanaRegistro.
+            ventanaRegistro.destroy()
+
+            # Con la clase subprocess y el método call, llamamos a un proceso de python. Esto lo hacemos para volver a ejecutar la ventana principal del programa:
+            subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
+
+        # A continuación, declaramos el botón que nos permitirá llevar a cabo la acción del método:
+        bVolverAtras = Button(ventanaRegistro, text="Volver atrás", height="3", width="30", bg="white", fg="navy",
+                              font="Calibri", command=volverAtras)
+        bVolverAtras.place(x=100, y=820, width=400, height=60)
+
+        """
+        18. Finalmente, con el método mainloop() indicamos a la interfaz que se quede esperando a que el 
         usuario realice algún evento.
         """
         ventanaRegistro.mainloop()
