@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionada conexión con nueva base de datos respeto del login.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionada conexión con nueva base de datos respeto del registro.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosRegistro.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosEliminacion.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosEliminacion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +15,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="350bf260-c491-4a1e-abd8-f95ab9f364f1" />
+        <option name="url" value="https://github.com/marcosrovira01/carholdedv2.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectId" id="2P6j9EQrPK5gi6tIDxN5f4sxbm5" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -55,12 +68,20 @@
       <option name="project" value="LOCAL" />
       <updated>1682786442656</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Solucionada conexión con nueva base de datos respeto del registro.">
+      <created>1682787016235</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682787016235</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Primer commit del proyecto base" />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del login." />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucionada conexión con nueva base de datos respeto del login." />
+    <MESSAGE value="Solucionada conexión con nueva base de datos respeto del registro." />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionada conexión con nueva base de datos respeto del registro." />
   </component>
 </project>
