@@ -38,6 +38,14 @@ class FormularioRegistro:
         ventanaRegistro.geometry("600x930")
         ventanaRegistro.title("Carholded 1.0 - Crear una nueva cuenta")
         ventanaRegistro.configure(bg="navy")
+
+        # El código a continuación, simplemente se encarga de centrar la ventana actual del programa:
+        ventanaRegistro.update_idletasks()
+        ancho = ventanaRegistro.winfo_width()
+        alto = ventanaRegistro.winfo_height()
+        x = (ventanaRegistro.winfo_screenwidth() // 2) - (ancho // 2)
+        y = (ventanaRegistro.winfo_screenheight() // 2) - (alto // 2)
+        ventanaRegistro.geometry('{}x{}+{}+{}'.format(ancho, alto, x, y))
         
         """
         2. Obtenemos el directorio de trabajo con la clase os y el método os.getcwd():

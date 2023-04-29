@@ -39,6 +39,14 @@ class FormularioBorrado:
         ventanaBorrado.geometry("500x430")
         ventanaBorrado.title("Carholded 1.0 - Eliminar Cuenta")
         ventanaBorrado.configure(bg="navy")
+
+        # El código a continuación, simplemente se encarga de centrar la ventana actual del programa:
+        ventanaBorrado.update_idletasks()
+        ancho = ventanaBorrado.winfo_width()
+        alto = ventanaBorrado.winfo_height()
+        x = (ventanaBorrado.winfo_screenwidth() // 2) - (ancho // 2)
+        y = (ventanaBorrado.winfo_screenheight() // 2) - (alto // 2)
+        ventanaBorrado.geometry('{}x{}+{}+{}'.format(ancho, alto, x, y))
         
         """
         2. Obtenemos el directorio de trabajo con la clase os y el método os.getcwd():

@@ -39,6 +39,14 @@ class FormularioLogin:
         ventanaLogin.geometry("500x430")
         ventanaLogin.title("Carholded 1.0 - Login")
         ventanaLogin.configure(bg="navy")
+
+        # El código a continuación, simplemente se encarga de centrar la ventana actual del programa:
+        ventanaLogin.update_idletasks()
+        ancho = ventanaLogin.winfo_width()
+        alto = ventanaLogin.winfo_height()
+        x = (ventanaLogin.winfo_screenwidth() // 2) - (ancho // 2)
+        y = (ventanaLogin.winfo_screenheight() // 2) - (alto // 2)
+        ventanaLogin.geometry('{}x{}+{}+{}'.format(ancho, alto, x, y))
         
         """
         2. Obtenemos el directorio de trabajo con la clase os y el método os.getcwd():

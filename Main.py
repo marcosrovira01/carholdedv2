@@ -38,13 +38,21 @@ def menuPrincipal():
     código:
     """
 
-    global menuFormulario 
+    global menuFormulario
     
     menuFormulario= Tk(className="Carholded");
     menuFormulario.resizable(0,0)
     menuFormulario.geometry("500x600")
     menuFormulario.title("Carholded 1.0")
     menuFormulario.configure(bg="navy")
+
+    #El código a continuación, simplemente se encarga de centrar la ventana actual del programa:
+    menuFormulario.update_idletasks()
+    ancho = menuFormulario.winfo_width()
+    alto = menuFormulario.winfo_height()
+    x = (menuFormulario.winfo_screenwidth() // 2) - (ancho // 2)
+    y = (menuFormulario.winfo_screenheight() // 2) - (alto // 2)
+    menuFormulario.geometry('{}x{}+{}+{}'.format(ancho, alto, x, y))
     
     """
     2. Necesitamos conocer el directorio de trabajo para que la aplicación se ejecute en cualquier

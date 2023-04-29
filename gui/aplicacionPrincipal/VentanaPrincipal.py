@@ -54,6 +54,14 @@ class VentanaPrincipal:
         menuPrincipal.resizable(0,0)
         menuPrincipal.geometry("1000x800")
         menuPrincipal.title("Carholded 1.0")
+
+        # El código a continuación, simplemente se encarga de centrar la ventana actual del programa:
+        menuPrincipal.update_idletasks()
+        ancho = menuPrincipal.winfo_width()
+        alto = menuPrincipal.winfo_height()
+        x = (menuPrincipal.winfo_screenwidth() // 2) - (ancho // 2)
+        y = (menuPrincipal.winfo_screenheight() // 2) - (alto // 2)
+        menuPrincipal.geometry('{}x{}+{}+{}'.format(ancho, alto, x, y))
         
         """
         2. Para obtener el directorio de trabajo, ejecutamos la clase os con el método getcwd():
