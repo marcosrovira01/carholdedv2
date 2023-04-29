@@ -109,7 +109,7 @@ class BaseDatosRegistro:
                 Finalmente, cerramos la conexión con close(), imprimimos el mensaje de que el registro fué exitoso y retornamos True:
                 """
                 miConexion.close()
-                tkinter.messagebox.showinfo(title="Registro Exitoso", message="El registro se realizó de forma exitosa.")
+                tkinter.messagebox.showinfo(title="Registro Exitoso", message="El registro se realizó de forma exitosa.\nYa puede iniciar sesión")
                 return True
                 
             

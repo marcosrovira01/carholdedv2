@@ -164,13 +164,15 @@ class FormularioRegistro:
                                                      segundoApellidoMayusculas, correoElectronico.get(), contraseña.get())
                         
                         #El método conexionBaseDatosRegistro, devuelve true si el registro ha sido exitoso. En caso contrario, 
-                        #devuelve false y un mensaje de error. Si devuelve true, simplemente cerraremos la ventana. Si devuelve
+                        #devuelve false y un mensaje de error. Si devuelve true, simplemente cerraremos la ventana y
+                        #volveremos a abrir la ventana principal del programa para que el usuario recién registrado pueda iniciar sesión. Si devuelve
                         #false, borraremos lo que haya escrito en todos los campos. EL booleano resultante lo almacenaremos en la
                         #variable (correcto):
                         correcto=conexion.conexionBaseDatosRegistro()
                         
                         if correcto:
                             ventanaRegistro.destroy()
+                            subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
                         else:
                             nombreUsuario.delete(0, "end")
                             primerApellido.delete(0, "end")
