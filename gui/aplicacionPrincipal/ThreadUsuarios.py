@@ -102,7 +102,7 @@ class ThreadUsuarios:
             Label(self.__pestañaUsuarios, text="Cantidad Ventas: "+totalVendido+"€", bg="navy", fg="white", height="1", font=("Calibri", 13), anchor='w').place(x =60, y =330, width=500, height=30)
             
             #Label para indicar que a continuación se ofrece un resúmen de las operaciones realizadas por el usuario:
-            Label(self.__pestañaUsuarios, text="Resúmen de tus operaciones:", bg="navy", fg="white", height="1", font=("Calibri", 15), anchor='w').place(x =365, y =380, width=500, height=30)
+            Label(self.__pestañaUsuarios, text="Resúmen de tus ventas:", bg="navy", fg="white", height="1", font=("Calibri", 15), anchor='w').place(x =365, y =380, width=500, height=30)
             
             """
             6. Insertamos un botón para actualizar los datos de la pestaña:
@@ -113,7 +113,7 @@ class ThreadUsuarios:
             
             
             """
-            7. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las operaciones realizadas por el usuario:
+            7. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las ventas realizadas por el usuario:
             """
             
             #Definimos los estilos para el heading de la tabla que crearemos a continuación con la clase ttk.Style y el método configure()
@@ -122,46 +122,44 @@ class ThreadUsuarios:
             estilosHeadingTabla.configure('Treeview.Heading', background="white", width=50, font="Calibri", foreground="black", padding=7)
             
             #Creamos un widget Treeview en la pestañaUsuarios, que nos permitirá crear una tabla. Al widget le decimos que la tabla tendrá 4 columnas:
-            tablaResumen = ttk.Treeview(self.__pestañaUsuarios, columns=("col1", "col2", "col3", "col4"), show="headings")
+            tablaResumenVentas = ttk.Treeview(self.__pestañaUsuarios, columns=("col1", "col2", "col3", "col4"), show="headings")
     
-            #Creamos las cabeceras de la tabla. La tabla mostrará los campos Modelo, Precio, Comprador y Vendedor de la Base de datos:
-            tablaResumen.heading("col1", text="Modelo")
-            tablaResumen.heading("col2", text="Precio")
-            tablaResumen.heading("col3", text="Comprador")
-            tablaResumen.heading("col4", text="Vendedor")
+            #Creamos las cabeceras de la tabla. La tabla mostrará los campos Comprador, Fecha, Importe y Modelo de la Base de datos:
+            tablaResumenVentas.heading("col1", text="Comprador")
+            tablaResumenVentas.heading("col2", text="Fecha")
+            tablaResumenVentas.heading("col3", text="Importe")
+            tablaResumenVentas.heading("col4", text="Modelo")
             
-            #Con el objeto conexión, que tiene como atributo el correo del usuario, y en base a este mismo, llamamos al método obtenerRegistroTablaResumen
+            #Con el objeto conexión, que tiene como atributo el correo del usuario, y en base a este mismo, llamamos al método obtenerRegistroTablaResumenVentas
             #de la clase BaseDatosPrincipal, el cual nos devolverá todos los datos que hemos solicitado a la base de datos. Sin embargo, para poder leer
             # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los 
             #resultantes de nuestra consulta:
-            for modelo, precio, comprador, vendedor in conexion.obtenerRegistroTablaResumen():
-                if comprador is None:
-                    comprador='El comprador no está definido'
-                elif vendedor is None:
-                    vendedor='El vendedor no existe'
-                tablaResumen.insert("", 0, text="1", values=(modelo, precio, comprador, vendedor))
+            for comprador, fecha, importe, modelo in conexion.obtenerRegistroTablaResumenVentas():
+                tablaResumenVentas.insert("", 0, text="1", values=(comprador, fecha, importe, modelo))
             
             
             # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
-            tablaResumen.tag_configure("oddrow", background="gray", font=("Calibri", 12), foreground="white")
-            tablaResumen.tag_configure("evenrow", background="white", font=("Calibri", 12), foreground="grey")
-            for i, item in enumerate(tablaResumen.get_children()):
+            tablaResumenVentas.tag_configure("oddrow", background="gray", font=("Calibri", 12), foreground="white")
+            tablaResumenVentas.tag_configure("evenrow", background="white", font=("Calibri", 12), foreground="grey")
+            for i, item in enumerate(tablaResumenVentas.get_children()):
                 if i % 2 == 0:
-                    tablaResumen.item(item, tags=("oddrow",))
+                    tablaResumenVentas.item(item, tags=("oddrow",))
                 else:
-                    tablaResumen.item(item, tags=("evenrow",))
+                    tablaResumenVentas.item(item, tags=("evenrow",))
             
             #Colocamos la tabla en nuestra interfaz gráfica con el método place:
-            tablaResumen.place(x =60, y =430, width=892, height=300)
+            tablaResumenVentas.place(x =60, y =430, width=892, height=150)
             
             #Añadimos una barra de deslizamiento vertical para posteriormente colocarla en la tabla:
-            scrollbar = ttk.Scrollbar(tablaResumen, orient="vertical", command=tablaResumen.yview)
+            scrollbar = ttk.Scrollbar(tablaResumenVentas, orient="vertical", command=tablaResumenVentas.yview)
             scrollbar.pack(side="right", fill="y")
             
             #Insertamos la barra de deslizamiento vertical en su correspondiente tabla:
-            tablaResumen.configure(yscrollcommand=scrollbar.set)
+            tablaResumenVentas.configure(yscrollcommand=scrollbar.set)
             
         except Exception as e:
+
+            print(e)
             
             """
             Si ocurre una excepción, devolvemos un mensaje de error con la clase messagebox que indique que no se ha podido

@@ -52,7 +52,7 @@ class VentanaPrincipal:
         
         menuPrincipal= Tk(className="Carholded");
         menuPrincipal.resizable(0,0)
-        menuPrincipal.geometry("1000x800")
+        menuPrincipal.geometry("1000x900")
         menuPrincipal.title("Carholded 1.0")
 
         # El código a continuación, simplemente se encarga de centrar la ventana actual del programa:

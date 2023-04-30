@@ -52,14 +52,14 @@ class BaseDatosPrincipal:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
             
             """
@@ -104,24 +104,24 @@ class BaseDatosPrincipal:
                 
                 
     """
-    Método obtenerRegistroTablaResumen(): servirá para obtener los registros correspondientes de la tablaResumen de la pestaña Usuarios.
+    Método obtenerRegistroTablaResumenVentas(): servirá para obtener los registros correspondientes de la tablaResumenVentas de la pestaña Usuarios.
     
     @return: cursor.fetchall()----Devuelve una tupla con todos los valores obtenidos de la consulta.
     """
-    def obtenerRegistroTablaResumen(self):
+    def obtenerRegistroTablaResumenVentas(self):
         """
         Bloque try para controlar excepciones, por ejemplo, si no se puede conectar con la base de datos:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
             
             """
@@ -134,8 +134,7 @@ class BaseDatosPrincipal:
             Realizamos la consulta a la base de datos, la cual obtendrá los registros solicitados en base al correo electrónico del usuario.
             Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo:
             """
-            sql="select t2.Modelo, t2.Precio, concat(t1.Nombre, ' ', t1.PrimerApellido, ' ', t1.SegundoApellido) as 'Comprador', concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido) as 'Vendedor' from Usuarios as t1 right join Vehiculos as t2 on (t1.CodigoUsuario=t2.CodigoComprador) left join Usuarios as t3 on (t2.CodigoVendedor=t3.CodigoUsuario) where t1.CorreoElectronico='"+self.__correo+"' OR t3.CorreoElectronico='"+self.__correo+"' ORDER BY t2.Modelo desc"
-            
+            sql="select concat(t5.Nombre, ' ', t5.PrimerApellido, ' ', t5.SegundoApellido) as Comprador, t2.Fecha, t2.Importe, t3.Modelo from Usuarios as t1 inner join Venta as t2 on (t1.CodigoUsuario=t2.CodigoUsuario) inner join Vehiculos as t3 on (t2.Matricula=t3.Matricula) inner join Compra as t4 on (t3.Matricula=t4.Matricula) inner join Usuarios as t5 on (t4.CodigoUsuario=t5.CodigoUsuario) where t1.CorreoElectronico='"+self.__correo+"'"
             """
             Ejecutamos la consulta con el método execute()
             """
@@ -154,7 +153,7 @@ class BaseDatosPrincipal:
             miConexion.close()
             
         except Exception as e:
-                
+            print(e)
             """
             Si ocurre cualquier tipo de excepción, la levantamos utilizando la palabra reservada raise, de forma que en el fragmento de código en el
             que llamemos a este método, si ocurre una excepción, ese fragmento de código recibirá dicha excepción para poder tratarla adecuadamente.
