@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora, todas las ventanas del programa aparecen centradas en la pantalla.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Añadida tablaResumenVentas en la pestaña Usuarios de la aplicación.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682800346319</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Añadida tablaResumenVentas en la pestaña Usuarios de la aplicación.">
+      <created>1682872846339</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682872846339</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,6 +185,7 @@
     <MESSAGE value="Ahora, cuando alguien borra su cuenta, en lugar de cerrarse el programa completamente, se cierra la ventana de borrado de cuentas y se abre de nuevo la ventana principal del programa." />
     <MESSAGE value="Ahora, cuando alguien borra su cuenta, al ser una acción delicada, previamente se pregunta al usuario si realmente desea borrar su cuenta. Si presiona en no, no se llevará a cabo ningúna accion. Sin embargo, si presiona en sí, se eliminará su cuenta definitivamente (siempre que los datos introducidos sean correctos)" />
     <MESSAGE value="Ahora, todas las ventanas del programa aparecen centradas en la pantalla." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ahora, todas las ventanas del programa aparecen centradas en la pantalla." />
+    <MESSAGE value="Añadida tablaResumenVentas en la pestaña Usuarios de la aplicación." />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadida tablaResumenVentas en la pestaña Usuarios de la aplicación." />
   </component>
 </project>

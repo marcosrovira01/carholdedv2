@@ -134,7 +134,7 @@ class BaseDatosPrincipal:
             Realizamos la consulta a la base de datos, la cual obtendrá los registros solicitados en base al correo electrónico del usuario.
             Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo:
             """
-            sql="select concat(t5.Nombre, ' ', t5.PrimerApellido, ' ', t5.SegundoApellido) as Comprador, t2.Fecha, t2.Importe, t3.Modelo from Usuarios as t1 inner join Venta as t2 on (t1.CodigoUsuario=t2.CodigoUsuario) inner join Vehiculos as t3 on (t2.Matricula=t3.Matricula) inner join Compra as t4 on (t3.Matricula=t4.Matricula) inner join Usuarios as t5 on (t4.CodigoUsuario=t5.CodigoUsuario) where t1.CorreoElectronico='"+self.__correo+"'"
+            sql="select concat(t5.Nombre, ' ', t5.PrimerApellido, ' ', t5.SegundoApellido) as Comprador, t2.Fecha, t2.Importe, t3.Modelo from Usuarios as t1 inner join Venta as t2 on (t1.CodigoUsuario=t2.CodigoUsuario) inner join Vehiculos as t3 on (t2.Matricula=t3.Matricula) inner join Compra as t4 on (t3.Matricula=t4.Matricula) inner join Usuarios as t5 on (t4.CodigoUsuario=t5.CodigoUsuario) where t1.CorreoElectronico='"+self.__correo+"' order by t2.Fecha asc"
             """
             Ejecutamos la consulta con el método execute()
             """
@@ -152,6 +152,64 @@ class BaseDatosPrincipal:
             """
             miConexion.close()
             
+        except Exception as e:
+            print(e)
+            """
+            Si ocurre cualquier tipo de excepción, la levantamos utilizando la palabra reservada raise, de forma que en el fragmento de código en el
+            que llamemos a este método, si ocurre una excepción, ese fragmento de código recibirá dicha excepción para poder tratarla adecuadamente.
+            """
+            raise e
+
+    """
+    Método obtenerRegistroTablaResumenCompras(): servirá para obtener los registros correspondientes de la tablaResumenCompras de la pestaña Usuarios.
+
+    @return: cursor.fetchall()----Devuelve una tupla con todos los valores obtenidos de la consulta.
+    """
+
+    def obtenerRegistroTablaResumenCompras(self):
+        """
+        Bloque try para controlar excepciones, por ejemplo, si no se puede conectar con la base de datos:
+        """
+        try:
+            """
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
+            y dirección del servidor localhost:
+            """
+            miConexion = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="2585",
+                database="carholdedv2"
+            )
+
+            """
+            Creamos un objeto cursor, que será el que contendrá la consulta
+            a la base de datos:
+            """
+            cursor = miConexion.cursor()
+
+            """
+            Realizamos la consulta a la base de datos, la cual obtendrá los registros solicitados en base al correo electrónico del usuario.
+            Los resultados de la consulta irán ordenados en función de la fecha de compra del vehículo:
+            """
+            sql = "select t2.Fecha, t2.Importe, t1.Modelo, t4.NombreMarca from Vehiculos as t1 inner join Compra as t2 on (t1.Matricula=t2.Matricula) inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t3.CorreoElectronico='"+self.__correo+"' order by t2.Fecha asc"
+            """
+            Ejecutamos la consulta con el método execute()
+            """
+            cursor.execute(sql)
+
+            """
+            Ejecutamos el método fetchall() del objeto cursor y lo devolvemos con return. Como ya hemos comentado anteriormente, este método nos generará una tupla
+            con los valores que haya obtenido de la consulta que hemos ejecutado, por lo que, en realidad, estaremos devolviendo esa tupla con todos los datos resultan-
+            tes de la consulta anterior.
+            """
+            return cursor.fetchall()
+
+            """
+            cerramos la conexión con close():
+            """
+            miConexion.close()
+
         except Exception as e:
             print(e)
             """

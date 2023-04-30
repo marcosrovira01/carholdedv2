@@ -61,7 +61,7 @@ class ThreadUsuarios:
             """
             4. Introducimos un label para indicar al usuario "Bienvenido, Usuario, con la variable extraida de la base de datos y lo centramos con anchor=w:
             """
-            bienvenida=Label(self.__pestañaUsuarios, text="Bienvenido, "+nombreUsuario+"", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
+            bienvenida=Label(self.__pestañaUsuarios, text="Bienvenid@, "+nombreUsuario+"", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
             bienvenida.place(x =200, y =40, width=600, height=100)
             bienvenida.config(anchor="center")
             
@@ -135,6 +135,7 @@ class ThreadUsuarios:
             # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los 
             #resultantes de nuestra consulta:
             for comprador, fecha, importe, modelo in conexion.obtenerRegistroTablaResumenVentas():
+                importe = str(importe) + '€'
                 tablaResumenVentas.insert("", 0, text="1", values=(comprador, fecha, importe, modelo))
             
             
@@ -156,6 +157,57 @@ class ThreadUsuarios:
             
             #Insertamos la barra de deslizamiento vertical en su correspondiente tabla:
             tablaResumenVentas.configure(yscrollcommand=scrollbar.set)
+
+            """
+            8. Insertamos un label para indicar que a continuación, se mostrará un resumen de las compras realizadas por el usuario:
+            """
+            Label(self.__pestañaUsuarios, text="Resúmen de tus compras:", bg="navy", fg="white", height="1", font=("Calibri", 15), anchor='w').place(x=365, y=600, width=500, height=30)
+            """
+            9. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las compras realizadas por el usuario:
+            """
+
+            # Definimos los estilos para el heading de la tabla que crearemos a continuación con la clase ttk.Style y el método configure()
+            # En el método configure, con el parámetro Treeview.Heading, indicamos que estamos dando dichos estilos al Heading de la tabla.
+            estilosHeadingTabla = ttk.Style()
+            estilosHeadingTabla.configure('Treeview.Heading', background="white", width=50, font="Calibri",
+                                          foreground="black", padding=7)
+
+            # Creamos un widget Treeview en la pestañaUsuarios, que nos permitirá crear una tabla. Al widget le decimos que la tabla tendrá 4 columnas:
+            tablaResumenCompras = ttk.Treeview(self.__pestañaUsuarios, columns=("col1", "col2", "col3", "col4"),
+                                              show="headings")
+
+            # Creamos las cabeceras de la tabla. La tabla mostrará los campos Fecha, Importe, Modelo y Marca de la Base de datos:
+            tablaResumenCompras.heading("col1", text="Fecha")
+            tablaResumenCompras.heading("col2", text="Importe")
+            tablaResumenCompras.heading("col3", text="Modelo")
+            tablaResumenCompras.heading("col4", text="Marca")
+
+            # Con el objeto conexión, que tiene como atributo el correo del usuario, y en base a este mismo, llamamos al método obtenerRegistroTablaResumenCompras
+            # de la clase BaseDatosPrincipal, el cual nos devolverá todos los datos que hemos solicitado a la base de datos. Sin embargo, para poder leer
+            # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los
+            # resultantes de nuestra consulta:
+            for fecha, importe, modelo, marca in conexion.obtenerRegistroTablaResumenCompras():
+                importe = str(importe) + '€'
+                tablaResumenCompras.insert("", 0, text="1", values=(fecha, importe, modelo, marca))
+
+            # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
+            tablaResumenCompras.tag_configure("oddrow", background="gray", font=("Calibri", 12), foreground="white")
+            tablaResumenCompras.tag_configure("evenrow", background="white", font=("Calibri", 12), foreground="grey")
+            for i, item in enumerate(tablaResumenCompras.get_children()):
+                if i % 2 == 0:
+                    tablaResumenCompras.item(item, tags=("oddrow",))
+                else:
+                    tablaResumenCompras.item(item, tags=("evenrow",))
+
+            # Colocamos la tabla en nuestra interfaz gráfica con el método place:
+            tablaResumenCompras.place(x=60, y=650, width=892, height=150)
+
+            # Añadimos una barra de deslizamiento vertical para posteriormente colocarla en la tabla:
+            scrollbar = ttk.Scrollbar(tablaResumenCompras, orient="vertical", command=tablaResumenCompras.yview)
+            scrollbar.pack(side="right", fill="y")
+
+            # Insertamos la barra de deslizamiento vertical en su correspondiente tabla:
+            tablaResumenCompras.configure(yscrollcommand=scrollbar.set)
             
         except Exception as e:
 
