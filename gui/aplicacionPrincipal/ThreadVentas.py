@@ -10,6 +10,7 @@ import os
 import tkinter
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from conexionBaseDatos.BaseDatosPrincipal import *
 
 import mysql.connector
@@ -78,7 +79,7 @@ class ThreadVentas:
         6. Insertamos un combobox con el nombre de las marcas de la tabla Marcas de la base de datos, que le permitirá al 
         usuario seleccionar una de las disponibles:
         """
-        seleccionarMarca = ttk.Combobox(self.__pestañaVentas, values=("BMW", "Mercedes", "Audi", "Lexus", "Renault", "Ford", "Opel", "Seat", "Alfa Romeo", "Aston Martin", "Chevrolet", "Citroen", "Dacia", "Fiat"), font=("Calibri", 14), state="readonly")
+        seleccionarMarca = ttk.Combobox(self.__pestañaVentas, values=("Volswagen", "Audi", "Mercedes", "Renault", "Porche", "Seat", "Chevrolet", "BMW", "Nissan", "Citroen"), font=("Calibri", 14), state="readonly")
         seleccionarMarca.current(0)
         seleccionarMarca.place(x =402, y =270, width=200, height=30)
         
@@ -127,51 +128,51 @@ class ThreadVentas:
         precioVehiculo.place(x =550, y = 536, width=250, height=30) 
         
         """
-        16. Insertamos una función llamada vender() que se ejecutará cuando presionemos el botón declarado a continuación de la misma
+        16. Insertamos una función llamada vender() que se ejecutará cuando presionemos el botón declarado a continuación de la misma. Esta función se encargará del proceso de venta
+        de un vehículo.
         """
         def realizarVenta():
+
+            #Antes de comenzar el proceso de venta de un vehículo, preguntamos al usuario si realmente desea poner a la venta ese vehículo con un messagebox:
+            respuesta = messagebox.askquestion("Vender vehículo", "¿Está seguro de que quiere vender el vehículo introducido?")
+
+            #Si presiona en sí, entonces comenzamos el proceso de venta:
+            if respuesta == "yes":
+
                 #En primer lugar, creamos una variable llamada resultadoSeleccion para almacenar el resultado de la selección de marca del usuario:
                 resultadoSeleccion=seleccionarMarca.get()
-                
+
                 #Ahora insertamos sentencia if/else, para que dependiendo de la marca del vehículo seleccionada, nos devuelva un código de marca
                 #u otro. Estos códigos hacen referencia al campo CodigoMarca de la tabla Marcas de la base de datos. Se debe hacer así por que no exi-
                 #ste la sentencia switch en python:
-                if resultadoSeleccion=="BMW":
-                    codigoMarca=4
-                elif resultadoSeleccion=="Mercedes":
-                    codigoMarca=5
+                if resultadoSeleccion=="Volswagen":
+                    codigoMarca=1
                 elif resultadoSeleccion=="Audi":
-                    codigoMarca=6
-                elif resultadoSeleccion=="Lexus":
-                    codigoMarca=7
+                    codigoMarca=2
+                elif resultadoSeleccion=="Mercedes":
+                    codigoMarca=3
                 elif resultadoSeleccion=="Renault":
-                    codigoMarca=8
-                elif resultadoSeleccion=="Ford":
-                    codigoMarca=9
-                elif resultadoSeleccion=="Opel":
-                    codigoMarca=10
+                    codigoMarca=4
+                elif resultadoSeleccion=="Porche":
+                    codigoMarca=5
                 elif resultadoSeleccion=="Seat":
-                    codigoMarca=11
-                elif resultadoSeleccion=="Alfa Romeo":
-                    codigoMarca=12
-                elif resultadoSeleccion=="Aston Martin":
-                    codigoMarca=13
+                    codigoMarca=6
                 elif resultadoSeleccion=="Chevrolet":
-                    codigoMarca=14
-                elif resultadoSeleccion=="Citroen":
-                    codigoMarca=15
-                elif resultadoSeleccion=="Dacia":
-                    codigoMarca=16
+                    codigoMarca=7
+                elif resultadoSeleccion=="BMW":
+                    codigoMarca=8
+                elif resultadoSeleccion=="Nissan":
+                    codigoMarca=9
                 else:
-                    codigoMarca=17
-                    
+                    codigoMarca=10
+
                 #Posteriormente, necesitamos obtener los datos de los entrys que ha introducido el usuario. Esto lo
                 #haremos con el método get()
                 matricula=matriculaVehiculo.get()
                 modelo=modeloVehiculo.get()
                 color=colorVehiculo.get()
                 precio=precioVehiculo.get()
-                
+
                 #previamente, creamos una función llamada borradoDatos() que eliminará los datos de los campos introducidos por el usuario:
                 #para ello, usará el método delete:
                 def borradoDatos():
@@ -179,27 +180,27 @@ class ThreadVentas:
                     modeloVehiculo.delete(0, "end")
                     colorVehiculo.delete(0, "end")
                     precioVehiculo.delete(0, "end")
-                    
-    
+
+
                 #A continuación, revisamos si la longitud de la matrícula es igual a 10 y si todos los campos están rellenados. De no ser
                 #El caso, lanzamos un mensaje de error y borramos todos los campos del formulario:
                 if matricula!='' and modelo!='' and color!='' and precio!='':
-                    
+
                     if len(matricula)==10:
-                        
+
                         #Si todo está correcto, creamos un objeto llamado conexión que se encargará de abrir una conexión con la base de datos,
                         #al cual le pasamos los parámetros correspondientes:
                         conexion=BaseDatosPrincipal(self.__correoElectronico, matricula, modelo, color, precio, codigoMarca)
-                        
+
                         #Finalmente, ejecutamos el método registrarVenta() de la clase BaseDatosPrincipal:
                         #El método devuelve un booleano, que almacenaremos en la variable correcto:
                         correcto=conexion.registrarVenta()
-                        
+
                         if correcto:
                             #si todo es correcto, imprimimos un mensaje de que el vehículo se ha puesto a la venta correctamente y borramos todos los campos:
                             tkinter.messagebox.showinfo(title="Venta correcta", message="El vehículo se ha puesto a la venta de forma exitosa.")
                             borradoDatos()
-                         
+
                         else:
                         #si devuelve False, eliminamos todos los campos introducidos por el usuario con borradoDatos():
                             borradoDatos()
@@ -208,7 +209,7 @@ class ThreadVentas:
                         #borramos todos los campos introducidos por el usuario con borradoDatos()
                         tkinter.messagebox.showinfo(title="Length Error", message="El campo matrícula debe de tener 10 caracteres.\nIntroduzca una matrícula diferente.")
                         borradoDatos()
-                        
+
                 else:
                     #Si hay algún campo vacio, mandamos el mensaje de error correspondiente, y
                     #borramos todos los campos introducidos por el usuario con borradoDatos()

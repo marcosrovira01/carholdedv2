@@ -10,7 +10,7 @@ sistema y ha accedido a nuestra aplicación
 
 import mysql.connector
 import tkinter.messagebox
-
+from datetime import date
 import mysql.connector
 from mysql.connector.errors import IntegrityError
 
@@ -229,14 +229,14 @@ class BaseDatosPrincipal:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
             
             """
@@ -268,10 +268,10 @@ class BaseDatosPrincipal:
             
             """
             Una vez que tenemos el codigo del usuario, ahora sí, podemos hacer el insert correspondiente, el cual insertará en la tabla
-            Vehículos los campos Matrícula, Modelo, Color, Precio, CodigoVendedor y CodigoMarcaVehiculo:
+            Vehículos los campos Matricula, Modelo, Color, Precio y CodigoMarca:
             """
-            nuevosql="insert into Vehiculos (Matrícula, Modelo, Color, Precio, CodigoVendedor, CodigoMarcaVehiculo) values (%s, %s, %s, %s, %s, %s)"
-            val=(self.__matricula, self.__modelo, self.__color, float(self.__precio), codigoVendedor, self.__codigoMarca)
+            nuevosql="insert into Vehiculos (Matricula, Modelo, Color, Precio, CodigoMarca) values (%s, %s, %s, %s, %s)"
+            val=(self.__matricula, self.__modelo, self.__color, float(self.__precio), self.__codigoMarca)
             """
             Ejecutamos la sentencia insert con execute():
             """
@@ -281,7 +281,27 @@ class BaseDatosPrincipal:
             Utilizamos el método commit() para refrescar la base de datos después de la inserción de algún dato:
             """
             miConexion.commit()
-            
+
+            """
+            Por último, añadimos dicha venta a la tabla Ventas, que relaciona la tabla Vehículos con la tabla Usuarios en nuestra app
+            """
+            #Previamente, necesitamos obtener la fecha actual. Esto lo hacemos con la clase date:
+            fecha=date.today().strftime('%Y-%m-%d')
+
+            #Realizamos la consulta para insertar los valores (Fecha, Importe, CodigoUsuario y Matrícula) en la tabla Venta:
+            ultimosql = "insert into Venta (Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
+            ultimoval = (fecha, float(self.__precio), codigoVendedor, self.__matricula)
+
+            """
+            Ejecutamos la sentencia insert con execute():
+            """
+            cursor.execute(ultimosql, ultimoval)
+
+            """
+            Utilizamos el método commit() para refrescar la base de datos después de la inserción de algún dato:
+            """
+            miConexion.commit()
+
             """
             cerramos la conexión con el método close():
             """
