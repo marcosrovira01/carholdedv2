@@ -175,6 +175,10 @@ class ThreadCompras:
                             tablaVehiculos.item(item, tags=("oddrow",))
                         else:
                             tablaVehiculos.item(item, tags=("evenrow",))
+                else:
+
+                    #Si no se encuentra ningún resultado, lanzamos un mensaje de advertencia, indicando que no se encontró ningún resultado:
+                    tkinter.messagebox.showinfo(title="No se encontraron resultados", message="No hay resultados disponibles para la búsqueda realizada")
 
             """
             9. Insertamos un entry que actuará como buscador de vehículos por modelo llamado buscador:
