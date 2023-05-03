@@ -149,10 +149,30 @@ class ThreadCompras:
             
             #insertamos el entry llamado matriculaVehiculo
             matriculaVehiculo=Entry(self.__pestañaCompras, width="40", font=("Calibri", 14))
-            matriculaVehiculo.place(x =190, y = 690, width=250, height=30) 
-            
+            matriculaVehiculo.place(x =190, y = 690, width=250, height=30)
+
             """
-            9. Previo a insertar el botón que realizará la compra, crearemos el método comprar(), que recopilará los datos del entry matriculaVehiculo introducidos
+            9. Después del entry, insertamos una función llamada on_select que se ejecutará cuando se seleccione una fila del Treeview. 
+            Lo que hará la función es reflejar la matrícula del vehículo seleccionado en el entry anterior:
+            """
+            def on_select(event):
+                # Obtenemos la fila seleccionada
+                fila = tablaVehiculos.selection()[0]
+
+                # Obtenemos los valores de la fila seleccionada
+                matriculaInsertar = tablaVehiculos.item(fila)["values"]
+
+                # Actualizamos el contenido del Entry con el valor del campo "Matrícula"
+                matriculaVehiculo.delete(0, END)
+                matriculaVehiculo.insert(0, matriculaInsertar[2])
+
+            """
+            10.Asociamos la función on_select al evento "Selection" del Treeview
+            """
+            tablaVehiculos.bind("<<TreeviewSelect>>", on_select)
+
+            """
+            11. Previo a insertar el botón que realizará la compra, crearemos el método comprar(), que recopilará los datos del entry matriculaVehiculo introducidos
             por el usuario y creará un objeto de la clase BaseDatosPrincipal. En dicho objeto, entrarán como parámetros el correo del usuario y la matrícula 
             del vehículo que desea comprar. Además, ejecutará el método comprarVehículo() de la clase BaseDatosPrincipal() para llevar a cabo la compra.
             Posteriormente, en el bComprar, usaremos este método para llevar a cabo la compra:
@@ -167,7 +187,7 @@ class ThreadCompras:
                 if respuesta == "yes":
 
                     #Primero, recuperamos lo que el usuario ha introducido en el entry matriculaVehiculo con el método get():
-                    matricula=matriculaVehiculo.get()
+                    matricula = matriculaVehiculo.get()
 
                     #A continuación, comprobamos si el campo se encuentra vacío:
                     if matricula!='':
@@ -192,7 +212,7 @@ class ThreadCompras:
                      
                 
             """
-            10. Insertamos el botón comprar, que comprará el vehículo solicitado por el usuario
+            12. Insertamos el botón comprar, que comprará el vehículo solicitado por el usuario
             en base a la matrícula introducida. El botón ejecutará el método comprar(), declarado anteriormente:
             """
             bComprar = Button(self.__pestañaCompras, text="Comprar Vehículo", height="3", width="30", bg="white", fg="navy", font="Calibri", 

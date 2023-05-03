@@ -117,7 +117,7 @@ class ThreadUsuarios:
             bActualizar.place(x =750, y = 230, width=200, height=50)
 
             """
-            10. Añadimos un botón que dará la opción al usuario de volver atrás:
+            7. Añadimos un botón que dará la opción al usuario de volver atrás:
             """
 
             # Definimos un método que nos permitirá cerrar sesión:
@@ -142,7 +142,7 @@ class ThreadUsuarios:
             
             
             """
-            7. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las ventas realizadas por el usuario:
+            8. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las ventas realizadas por el usuario:
             """
             
             #Definimos los estilos para el heading de la tabla que crearemos a continuación con la clase ttk.Style y el método configure()
@@ -188,11 +188,11 @@ class ThreadUsuarios:
             tablaResumenVentas.configure(yscrollcommand=scrollbar.set)
 
             """
-            8. Insertamos un label para indicar que a continuación, se mostrará un resumen de las compras realizadas por el usuario:
+            9. Insertamos un label para indicar que a continuación, se mostrará un resumen de las compras realizadas por el usuario:
             """
             Label(self.__pestañaUsuarios, text="Resúmen de tus compras:", bg="navy", fg="white", height="1", font=("Calibri", 15), anchor='w').place(x=365, y=600, width=500, height=30)
             """
-            9. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las compras realizadas por el usuario:
+            10. Insertamos una tabla en nuestra pestañaUsuarios, la cual ofrecerá un resúmen de las compras realizadas por el usuario:
             """
 
             # Definimos los estilos para el heading de la tabla que crearemos a continuación con la clase ttk.Style y el método configure()
