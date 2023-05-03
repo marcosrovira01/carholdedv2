@@ -159,26 +159,46 @@ class ThreadCompras:
                 #Ejecutamos el método obtenerResultadoBusqueda() de la base de datos, que nos devolverá una serie de datos en función de la búsqueda realizada por el usuario.
                 #Si la lista resultante de la búsqueda no está vacía, insertamos los datos en la tabla. De lo contrario imprimimos un mensaje con messajebox indicando que
                 #no se encontraron resultados para la búsqueda:
-                if len(conexion.obtenerResultadoBusqueda(buscador.get()))!=0:
 
-                    #Insertamos los nuevos datos que son resultado de la búsqueda realizada por el usuario:
-                    for modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, precioBusqueda in conexion.obtenerResultadoBusqueda(buscador.get()):
-                        tablaVehiculos.insert("", 0, text="1", values=(modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, str(precio) + ' €'))
+                try:
 
-                    # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
-                    tablaVehiculos.tag_configure("oddrow", background="gray", font=("Calibri", 12),
-                                                 foreground="white")
-                    tablaVehiculos.tag_configure("evenrow", background="white", font=("Calibri", 12),
-                                                 foreground="grey")
-                    for i, item in enumerate(tablaVehiculos.get_children()):
-                        if i % 2 == 0:
-                            tablaVehiculos.item(item, tags=("oddrow",))
-                        else:
-                            tablaVehiculos.item(item, tags=("evenrow",))
-                else:
+                    if len(conexion.obtenerResultadoBusqueda(buscador.get()))!=0:
 
-                    #Si no se encuentra ningún resultado, lanzamos un mensaje de advertencia, indicando que no se encontró ningún resultado:
-                    tkinter.messagebox.showinfo(title="No se encontraron resultados", message="No hay resultados disponibles para la búsqueda realizada")
+                        #Insertamos los nuevos datos que son resultado de la búsqueda realizada por el usuario:
+                        for modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, precioBusqueda in conexion.obtenerResultadoBusqueda(buscador.get()):
+                            tablaVehiculos.insert("", 0, text="1", values=(modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, str(precioBusqueda) + ' €'))
+
+                        # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
+                        tablaVehiculos.tag_configure("oddrow", background="gray", font=("Calibri", 12),
+                                                     foreground="white")
+                        tablaVehiculos.tag_configure("evenrow", background="white", font=("Calibri", 12),
+                                                     foreground="grey")
+                        for i, item in enumerate(tablaVehiculos.get_children()):
+                            if i % 2 == 0:
+                                tablaVehiculos.item(item, tags=("oddrow",))
+                            else:
+                                tablaVehiculos.item(item, tags=("evenrow",))
+                    else:
+
+                        #Si no se encuentra ningún resultado, lanzamos un mensaje de advertencia, indicando que no se encontró ningún resultado:
+                        tkinter.messagebox.showinfo(title="No se encontraron resultados", message="No hay resultados disponibles para la búsqueda realizada")
+
+                except Exception as e:
+
+                    """
+                    Si ocurre una excepción, devolvemos un mensaje de error con la clase messagebox que indique que no se ha podido
+                    conectar con el servidor. Para ello, hemos debido capturar previamente la excepción que ocasiona un error
+                    de conexión y usar un if. Si coinciden,entonces lanzamos ese mensaje de error de conexión. De lo contrario,  mandamos 
+                    un mensaje de error inesperado:
+                    """
+                    codigoError = "2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (111)"
+                    errorConexion = str(e)
+
+                    if codigoError == errorConexion:
+                        tkinter.messagebox.showinfo(title="Error de conexión",
+                                                    message="No se pudo conectar con el servidor.")
+                    else:
+                        tkinter.messagebox.showinfo(title="Error Inesperado", message="Ocurrió un error inesperado.")
 
             """
             9. Insertamos un entry que actuará como buscador de vehículos por modelo llamado buscador:
@@ -287,10 +307,10 @@ class ThreadCompras:
             de conexión y usar un if. Si coinciden,entonces lanzamos ese mensaje de error de conexión. De lo contrario,  mandamos 
             un mensaje de error inesperado:
             """
-            codigoError="2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (111)"
-            errorConexion=str(e)
+            codigoError1="2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (111)"
+            errorConexion1=str(e)
             
-            if codigoError==errorConexion:
+            if codigoError1==errorConexion1:
                 tkinter.messagebox.showinfo(title="Error de conexión", message="No se pudo conectar con el servidor.")
             else:
                 tkinter.messagebox.showinfo(title="Error Inesperado", message="Ocurrió un error inesperado.")

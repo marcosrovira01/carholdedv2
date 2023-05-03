@@ -334,7 +334,6 @@ class BaseDatosPrincipal:
             return False
         
         except Exception as e:
-            print(e)
             """
             Si ocurre otra excepción distinta a las anteriores, devolvemos un mensaje de error con la clase messagebox que indique que no se ha podido
             conectar con el servidor. Para ello, hemos debido capturar previamente la excepción que ocasiona un error

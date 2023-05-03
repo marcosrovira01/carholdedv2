@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Buscador de vehículos por modelo implementado (funcional)">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +212,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683143271352</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda.">
+      <created>1683143575413</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683143575413</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,6 +257,7 @@
     <MESSAGE value="Ahora, cuando seleccionamos un vehículo de la tabla de vehículos disponibles para comprar, en lugar de tener que introducir la matrícula del vehículo que deseamos comprar manualmente, ésta se introduce automáticamente." />
     <MESSAGE value="Buscador de vehículos por modelo implementado (aún no es funcional)" />
     <MESSAGE value="Buscador de vehículos por modelo implementado (funcional)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buscador de vehículos por modelo implementado (funcional)" />
+    <MESSAGE value="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda." />
   </component>
 </project>
