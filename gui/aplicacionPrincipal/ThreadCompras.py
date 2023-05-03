@@ -118,7 +118,7 @@ class ThreadCompras:
             # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los 
             #resultantes de nuestra consulta:
             for modelo, vendedor, matricula, marca, color, precio in conexion.obtenerRegistroTablaVehiculos():
-                tablaVehiculos.insert("", 0, text="1", values=(modelo, vendedor, matricula, marca, color, precio))
+                tablaVehiculos.insert("", 0, text="1", values=(modelo, vendedor, matricula, marca, color, str(precio) + ' €'))
             
             
             # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
@@ -179,7 +179,7 @@ class ThreadCompras:
             
                 else:
                     #Si el campo se encuentra vacío, retornamos el correspondiente mensaje de error:
-                    tkinter.messagebox.showinfo(title="Value Error", message="El campo matrícula se encuentra vacío. \nPor favor, ingresa una matrícula válida.")
+                    tkinter.messagebox.showinfo(title="Campo Vacío", message="El campo matrícula se encuentra vacío. \nPor favor, ingresa una matrícula válida.")
                      
                 
             """

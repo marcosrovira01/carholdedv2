@@ -153,7 +153,6 @@ class BaseDatosPrincipal:
             miConexion.close()
             
         except Exception as e:
-            print(e)
             """
             Si ocurre cualquier tipo de excepción, la levantamos utilizando la palabra reservada raise, de forma que en el fragmento de código en el
             que llamemos a este método, si ocurre una excepción, ese fragmento de código recibirá dicha excepción para poder tratarla adecuadamente.
@@ -211,7 +210,6 @@ class BaseDatosPrincipal:
             miConexion.close()
 
         except Exception as e:
-            print(e)
             """
             Si ocurre cualquier tipo de excepción, la levantamos utilizando la palabra reservada raise, de forma que en el fragmento de código en el
             que llamemos a este método, si ocurre una excepción, ese fragmento de código recibirá dicha excepción para poder tratarla adecuadamente.
@@ -268,10 +266,11 @@ class BaseDatosPrincipal:
             
             """
             Una vez que tenemos el codigo del usuario, ahora sí, podemos hacer el insert correspondiente, el cual insertará en la tabla
-            Vehículos los campos Matricula, Modelo, Color, Precio y CodigoMarca:
+            Vehículos los campos Matricula, Modelo, Color, Precio, CodigoMarca y Vendido (valdrá por defecto 0, lo que nos indicará que aún nadie
+            lo ha comprado):
             """
-            nuevosql="insert into Vehiculos (Matricula, Modelo, Color, Precio, CodigoMarca) values (%s, %s, %s, %s, %s)"
-            val=(self.__matricula, self.__modelo, self.__color, float(self.__precio), self.__codigoMarca)
+            nuevosql="insert into Vehiculos (Matricula, Modelo, Color, Precio, CodigoMarca, Vendido) values (%s, %s, %s, %s, %s, %s)"
+            val=(self.__matricula, self.__modelo, self.__color, float(self.__precio), self.__codigoMarca, 0)
             """
             Ejecutamos la sentencia insert con execute():
             """
@@ -288,7 +287,7 @@ class BaseDatosPrincipal:
             #Previamente, necesitamos obtener la fecha actual. Esto lo hacemos con la clase date:
             fecha=date.today().strftime('%Y-%m-%d')
 
-            #Realizamos la consulta para insertar los valores (Fecha, Importe, CodigoUsuario y Matrícula) en la tabla Venta:
+            #Realizamos la consulta para insertar los valores (Fecha, Importe, CodigoUsuario y Matrícula en la tabla Venta:
             ultimosql = "insert into Venta (Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
             ultimoval = (fecha, float(self.__precio), codigoVendedor, self.__matricula)
 
@@ -313,7 +312,6 @@ class BaseDatosPrincipal:
             return True
             
         except mysql.connector.IntegrityError as e:
-                
             """
             Devolvemos el mensaje de error adecuado para esta excepción:
             """
@@ -336,6 +334,7 @@ class BaseDatosPrincipal:
             return False
         
         except Exception as e:
+            print(e)
             """
             Si ocurre otra excepción distinta a las anteriores, devolvemos un mensaje de error con la clase messagebox que indique que no se ha podido
             conectar con el servidor. Para ello, hemos debido capturar previamente la excepción que ocasiona un error
@@ -363,14 +362,14 @@ class BaseDatosPrincipal:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
             
             """
@@ -384,7 +383,7 @@ class BaseDatosPrincipal:
             Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo. La consulta obtendrá los campos Modelo, Vendedor,
             Matrícula, Marca, Color y Precio:
             """
-            sql="select t2.Modelo, concat(t1.Nombre, ' ',t1.PrimerApellido) as Vendedor, t2.Matrícula, t3.NombreMarca, t2.Color, concat(t2.Precio, '€') from Usuarios as t1 inner join Vehiculos as t2 on (t1.CodigoUsuario=t2.CodigoVendedor) inner join Marcas as t3 on (t3.CodigoMarca=t2.CodigoMarcaVehiculo) left join Usuarios as t4 on (t4.CodigoUsuario=t2.CodigoComprador) where t4.Nombre IS NULL and t1.CorreoElectronico<>'"+self.__correo+"' order by t2.Modelo asc;"
+            sql="select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Venta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='"+self.__correo+"' order by t1.Modelo asc"
             
             """
             Ejecutamos la consulta con el método execute()
@@ -422,14 +421,14 @@ class BaseDatosPrincipal:
         """
         try:
             """
-            Creamos un nuevo socket, que se conectará a la base de datos "carholded", con usuario root, contraseña 2585 
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
             y dirección del servidor localhost:
             """
             miConexion=mysql.connector.connect(
                 host="localhost", 
                 user="root",
                 password="2585",
-                database="carholded"
+                database="carholdedv2"
                 )
 
             """
@@ -451,14 +450,14 @@ class BaseDatosPrincipal:
             """
             Obtenemos también el precio del vehículo mediante otra consulta:
             """
-            cursor.execute("select Precio from Vehiculos where Matrícula='"+self.__matricula+"'")
+            cursor.execute("select Precio from Vehiculos where Matricula='"+self.__matricula+"'")
             listaPrecio=cursor.fetchone()
             precioVehiculo=listaPrecio[0]
             
             """
             Obtenemos el codigo del Vendedor:
             """
-            cursor.execute("select CodigoVendedor from Vehiculos where Matrícula='"+self.__matricula+"'")
+            cursor.execute("select t1.CodigoUsuario from Venta as t1 inner join Vehiculos as t2 on (t1.Matricula=t2.Matricula) where t2.Matricula='"+self.__matricula+"'")
             listaCodigoVendedor=cursor.fetchone()
             codigoVendedor=listaCodigoVendedor[0]  
             
@@ -466,39 +465,73 @@ class BaseDatosPrincipal:
             Actualizamos con commit():
             """          
             miConexion.commit()
-            
+
             """
-            A continuación, Ejecutamos las diversas operaciones  para llevar a cabo la compra:
+            Recuperamos el campo "Vendido" de la base de datos en base al vehículo que el usuario está tratando de comprar:
             """
-            sql1="update Vehiculos set CodigoComprador=%s where Matrícula=%s"
-            val1=(codigoComprador, self.__matricula)
-            cursor.execute(sql1, val1)
-            
-            sql2="update Usuarios set CantidadGastada=CantidadGastada+%s where CorreoElectronico=%s"
-            val2=(precioVehiculo, self.__correo)
-            cursor.execute(sql2, val2)
-            
-            sql3="update Usuarios set CantidadVendida=CantidadVendida+%s where CodigoUsuario=%s"
-            val3=(precioVehiculo, codigoVendedor)
-            cursor.execute(sql3, val3)
-               
+            cursor.execute("select Vendido from Vehiculos where Matricula='"+self.__matricula+"'")
+            listaVendido = cursor.fetchone()
+            vendido=listaVendido[0]
+
             """
-            Actualizamos con commit()
+            Si el vehículo se encuentra disponible, entonces procedemos con la compra:
             """
-            miConexion.commit()
+            if vendido==0:
+                """
+                A continuación, Ejecutamos las diversas operaciones  para llevar a cabo la compra:
+                """
+                #1. Agregamos la Compra realizada a la tabla "Compra de la base de datos"
+                fecha = date.today().strftime('%Y-%m-%d')
+
+                sql1="insert into Compra(Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
+                val1=(fecha, precioVehiculo, codigoComprador, self.__matricula)
+                cursor.execute(sql1, val1)
+
+                #2.Añadimos la cantidad que acaba de gastar el usuario a CantidadGastada en nuestra base de datos:
+
+                sql2="update Usuarios set CantidadGastada=CantidadGastada+%s where CorreoElectronico=%s"
+                val2=(precioVehiculo, self.__correo)
+                cursor.execute(sql2, val2)
+
+                #3.Añadimos la cantidad que acaba de vender el usuario que ha realizado la venta
+
+                sql3="update Usuarios set CantidadVendida=CantidadVendida+%s where CodigoUsuario=%s"
+                val3=(precioVehiculo, codigoVendedor)
+                cursor.execute(sql3, val3)
+
+                #4. Agregamos al campo "Vendido" el valor 1, haciendo referencia a que se ha vendido el vehículo satisfactoriamente:
+
+                sql4="update Vehiculos set Vendido=%s where Matricula=%s"
+                val3=(1, self.__matricula)
+                cursor.execute(sql4, val3)
+
+                """
+                Actualizamos con commit()
+                """
+                miConexion.commit()
+
+                """
+                Si la compra ha sido exitosa, devolvemos True:
+                """
+                return True
+
+            else:
+
+                """
+                Si por el contrario, el vehículo no se encuentra disponible, entonces lanzamos un mensaje de error y devolvemos false:
+                """
+
+                tkinter.messagebox.showinfo(title="Vehículo no disponible", message="EL vehículo que tratas de comprar no se encuentra disponible")
+                return False
+
+
             
             """
             cerramos la conexión con close():
             """
             miConexion.close()
             
-            """
-            Si la compra ha sido exitosa, devolvemos True:
-            """
-            return True
-            
         except Exception as e:
-            
             """
             Si ocurre una excepción , devolvemos un mensaje de error con la clase messagebox, dependiendo de la excepción producida. Para ello, hemos debido 
             capturar previamente la excepción  y usar una sentencia if. Si coinciden, entonces lanzamos ese determinado mensaje de error de conexión. 
