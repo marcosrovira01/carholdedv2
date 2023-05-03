@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Implementado correctamente botón de cerrar sesión en la pestaña &quot;Usuarios&quot;(Funcional)">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora, cuando seleccionamos un vehículo de la tabla de vehículos disponibles para comprar, en lugar de tener que introducir la matrícula del vehículo que deseamos comprar manualmente, ésta se introduce automáticamente.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683134657595</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Ahora, cuando seleccionamos un vehículo de la tabla de vehículos disponibles para comprar, en lugar de tener que introducir la matrícula del vehículo que deseamos comprar manualmente, ésta se introduce automáticamente.">
+      <created>1683135980994</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683135980994</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +232,7 @@
     <MESSAGE value="Implementada la conexión de la pestaña Compras con la nueva base de datos carholdedv2." />
     <MESSAGE value="messagebox para preguntar al usuario si realmente desea comprar el vehículo seleccionado añadido correctamente." />
     <MESSAGE value="Implementado correctamente botón de cerrar sesión en la pestaña &quot;Usuarios&quot;(Funcional)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementado correctamente botón de cerrar sesión en la pestaña &quot;Usuarios&quot;(Funcional)" />
+    <MESSAGE value="Ahora, cuando seleccionamos un vehículo de la tabla de vehículos disponibles para comprar, en lugar de tener que introducir la matrícula del vehículo que deseamos comprar manualmente, ésta se introduce automáticamente." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ahora, cuando seleccionamos un vehículo de la tabla de vehículos disponibles para comprar, en lugar de tener que introducir la matrícula del vehículo que deseamos comprar manualmente, ésta se introduce automáticamente." />
   </component>
 </project>

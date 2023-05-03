@@ -51,10 +51,10 @@ class ThreadCompras:
             Label(self.__pestañaCompras, image=self.imagen, bg="navy").place(x =40, y =20, width=150, height=100)
             
             """
-            3. Introducimos un label llamado labelPrincipal para indicar al usuario que debe introducir una matrícula de las disponibles en el listado
-            para comprar un vehículo
+            3. Introducimos un label llamado labelPrincipal para indicar al usuario que debe seleccionar un vehículo de los disponibles en el listado
+            para comprarlo:
             """
-            labelPrincipal=Label(self.__pestañaCompras, text="Formulario de compras.\n\n Nota: Introduce una matrícula de las disponibles \nen la tabla para comprar un vehículo:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
+            labelPrincipal=Label(self.__pestañaCompras, text="Formulario de compras.\n\n Nota: Selecciona un vehículo de los disponibles \nen la tabla para comprarlo:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
             labelPrincipal.place(x =200, y =10, width=600, height=150)
             labelPrincipal.config(anchor="center")
             
@@ -72,16 +72,39 @@ class ThreadCompras:
             ).place(x=60, y=180, width=880, height=3)
             
             """
-            5. Insertamos un label para indicar que a continuación  se mostrará una tabla con los vehículos en venta disponibles:
+            5. Insertamos un entry que actuará como buscador de vehículos por modelo llamado buscador:
             """
-            Label(self.__pestañaCompras, text="Vehículos actualmente en venta:", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=130, y = 220, width=400, height=40);
+            buscador = Entry(self.__pestañaCompras, width="40", font=("Calibri", 14))
+            buscador.place(x=170, y = 220, width=300, height=40);
+
+            """
+            6. Insertamos un botón que se llamará bBuscar, que realizará una búsqueda de vehículos disponibles en función del modelo:
+            """
+
+            bBuscar = Button(self.__pestañaCompras, text="Buscar vehículos", height="3", width="30", bg="white",
+                                 fg="navy", font="Calibri",
+                                 command=self.iniciarThreadCompras)
+            bBuscar.place(x=520, y=215, width=300, height=50)
+
+            """
+            4. Introducimos otro separador blanco con la clase ttk.Separator:
+            """
+            estilosSeparador = ttk.Style()
+            estilosSeparador.configure('TSeparator', background="white")
+            ttk.Separator(
+                master=self.__pestañaCompras,
+                orient=HORIZONTAL,
+                style='TSeparator',
+                class_=ttk.Separator,
+                takefocus=0
+            ).place(x=60, y=300, width=880, height=3)
             
             """
             6.Insertamos un botón que se llamará bActualizar, que ejecutará el método iniciarThreadCompras() para actualizar los datos de la tablaVehiculos:
             """
             bActualizar = Button(self.__pestañaCompras, text="Actualizar Vehículos", height="3", width="30", bg="white", fg="navy", font="Calibri", 
                                 command=self.iniciarThreadCompras)
-            bActualizar.place(x =560, y = 215, width=300, height=50)
+            bActualizar.place(x =350, y = 322.5, width=300, height=50)
             
             """
             7. Insertamos una tabla en nuestra pestañaCompras, la cual ofrecerá un listado de los vehículos que se encuentran actualmente en venta:
@@ -132,7 +155,7 @@ class ThreadCompras:
                     tablaVehiculos.item(item, tags=("evenrow",))
             
             #Colocamos la tabla en nuestra interfaz gráfica con el método place:
-            tablaVehiculos.place(x =10, y =290, width=980, height=300)
+            tablaVehiculos.place(x =10, y =390, width=980, height=300)
             
             #Añadimos una barra de deslizamiento vertical para posteriormente colocarla en la tabla:
             scrollbar = ttk.Scrollbar(tablaVehiculos, orient="vertical", command=tablaVehiculos.yview)
@@ -145,11 +168,11 @@ class ThreadCompras:
             8. Tras insertar la tabla, insertamos un entry  llamado matriculaVehiculo para que el usuario introduzca la matrícula del vehículo que desea comprar:
             """
             #insertamos previamente un label para indicar que a continuación el usuario debe de introducir la matrícula del coche que desea comprar:
-            Label(self.__pestañaCompras, text="Introduzca la matrícula del vehículo \nque desea comprar:", bg="navy", fg="white", width="500", height="2", font=("Calibri", 16), anchor='w').place(x=120, y = 620, width=500, height=50);
+            Label(self.__pestañaCompras, text="Introduzca la matrícula del vehículo \nque desea comprar, o seleccione uno:", bg="navy", fg="white", width="500", height="2", font=("Calibri", 16), anchor='w').place(x=120, y = 720, width=500, height=50);
             
             #insertamos el entry llamado matriculaVehiculo
             matriculaVehiculo=Entry(self.__pestañaCompras, width="40", font=("Calibri", 14))
-            matriculaVehiculo.place(x =190, y = 690, width=250, height=30)
+            matriculaVehiculo.place(x =190, y = 790, width=250, height=30)
 
             """
             9. Después del entry, insertamos una función llamada on_select que se ejecutará cuando se seleccione una fila del Treeview. 
@@ -217,7 +240,7 @@ class ThreadCompras:
             """
             bComprar = Button(self.__pestañaCompras, text="Comprar Vehículo", height="3", width="30", bg="white", fg="navy", font="Calibri", 
                                 command=comprar)
-            bComprar.place(x =560, y = 650, width=300, height=50)
+            bComprar.place(x =560, y = 750, width=300, height=50)
     
         except Exception as e:
             """
