@@ -10,6 +10,7 @@ import os
 import tkinter
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from conexionBaseDatos.BaseDatosPrincipal import *
 
 class ThreadCompras:
@@ -157,29 +158,37 @@ class ThreadCompras:
             Posteriormente, en el bComprar, usaremos este método para llevar a cabo la compra:
             """
             def comprar():
-                #Primero, recuperamos lo que el usuario ha introducido en el entry matriculaVehiculo con el método get():
-                matricula=matriculaVehiculo.get()
-                
-                #A continuación, comprobamos si el campo se encuentra vacío:
-                if matricula!='':
-                
-                    #Si hay algún dato, realizamos la conexión con la base de datos y ejecutamos el método comprarVehículo():
-                    #El resultado de la ejecución del método comprarVehiculo() lo almacenamos en una variable llamada correcto:
-                    nuevaConexion=BaseDatosPrincipal(self.__correoElectronico, matricula)
-                    correcto=nuevaConexion.comprarVehiculo()  
-                    
-                    if correcto:
-                        #Si la compra fué exitosa, imprimimos el mensaje correspondiente y ejecutamos el método iniciarThreadCompras() para actualizar los datos
-                        tkinter.messagebox.showinfo(title="Compra Exitosa", message="La compra se llevó a cabo con éxito!")
-                        self.iniciarThreadCompras()
-                        
+
+                # Antes de comenzar el proceso de compra de un vehículo, preguntamos al usuario si realmente desea comprar ese vehículo con un messagebox:
+                respuesta = messagebox.askquestion("Comprar vehículo",
+                                                   "¿Está seguro de que quiere comprar el vehículo seleccionado?")
+
+                # Si presiona en sí, entonces comenzamos el proceso de venta:
+                if respuesta == "yes":
+
+                    #Primero, recuperamos lo que el usuario ha introducido en el entry matriculaVehiculo con el método get():
+                    matricula=matriculaVehiculo.get()
+
+                    #A continuación, comprobamos si el campo se encuentra vacío:
+                    if matricula!='':
+
+                        #Si hay algún dato, realizamos la conexión con la base de datos y ejecutamos el método comprarVehículo():
+                        #El resultado de la ejecución del método comprarVehiculo() lo almacenamos en una variable llamada correcto:
+                        nuevaConexion=BaseDatosPrincipal(self.__correoElectronico, matricula)
+                        correcto=nuevaConexion.comprarVehiculo()
+
+                        if correcto:
+                            #Si la compra fué exitosa, imprimimos el mensaje correspondiente y ejecutamos el método iniciarThreadCompras() para actualizar los datos
+                            tkinter.messagebox.showinfo(title="Compra Exitosa", message="La compra se llevó a cabo con éxito!")
+                            self.iniciarThreadCompras()
+
+                        else:
+                            #Si la compra no fue exitosa,  simplemente eliminamos el campo matriculaVehiculo
+                            matriculaVehiculo.delete(0, "end")
+
                     else:
-                        #Si la compra no fue exitosa,  simplemente eliminamos el campo matriculaVehiculo
-                        matriculaVehiculo.delete(0, "end")    
-            
-                else:
-                    #Si el campo se encuentra vacío, retornamos el correspondiente mensaje de error:
-                    tkinter.messagebox.showinfo(title="Campo Vacío", message="El campo matrícula se encuentra vacío. \nPor favor, ingresa una matrícula válida.")
+                        #Si el campo se encuentra vacío, retornamos el correspondiente mensaje de error:
+                        tkinter.messagebox.showinfo(title="Campo Vacío", message="El campo matrícula se encuentra vacío. \nPor favor, ingresa una matrícula válida.")
                      
                 
             """
