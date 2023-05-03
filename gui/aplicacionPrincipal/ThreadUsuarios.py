@@ -6,10 +6,12 @@ Created on 7 feb 2023
 Esta clase gestionará la primera pestaña de la ventana principal de la aplicación. La pestaña "Usuarios".
 '''
 
+import subprocess
 import os
 import tkinter 
 from tkinter import *
 from tkinter import ttk
+from tkinter import messagebox
 from conexionBaseDatos.BaseDatosPrincipal import *
 
 class ThreadUsuarios:
@@ -20,11 +22,14 @@ class ThreadUsuarios:
     -pestañaUsuarios: Es la pestaña sobre la que se va a ejecutar este Thread.
     -correoElectronico: Es el correo del Usuario, que va a ser utilizado para las distintas consultas a la
     base de datos.
+    -ventanaPrincipal: Es la ventana principal de la aplicación. La pasamos como parámetro para que, en caso de que el usuario
+    cierre sesión, podamos destruirla adecuadamente.
     """
-    def __init__(self, pestañaUsuarios, correoElectronico):
+    def __init__(self, pestañaUsuarios, correoElectronico, ventanaPrincipal):
         
         self.__pestañaUsuarios=pestañaUsuarios
         self.__correoElectronico=correoElectronico
+        self.__ventanaPrincipal=ventanaPrincipal
         
     """
     iniciarThreadUsuarios(): Método que inicia el hilo "Usuarios" en la pestaña que se pasa como parámetro.
@@ -109,7 +114,31 @@ class ThreadUsuarios:
             """
             bActualizar = Button(self.__pestañaUsuarios, text="Actualizar\n Datos", height="3", width="30", bg="white", fg="navy", font="Calibri", 
                             command=self.iniciarThreadUsuarios)
-            bActualizar.place(x =750, y = 300, width=200, height=50)
+            bActualizar.place(x =750, y = 230, width=200, height=50)
+
+            """
+            10. Añadimos un botón que dará la opción al usuario de volver atrás:
+            """
+
+            # Definimos un método que nos permitirá cerrar sesión:
+            def cerrarSesion():
+
+                #Previamente, preguntamos al usuario si realmente desea cerrar sesión:
+                respuesta = messagebox.askquestion("Cerrar sesión", "¿Está seguro de que desea cerrar sesión?")
+
+                #Si la respuesta es sí, entonces cerramos la sesión del usuario:
+                if respuesta == "yes":
+
+                    # Destruimos la ventana actual, es decir, ventanaPrincipal, la cual contiene a los 3 hilos.
+                    self.__ventanaPrincipal.destroy()
+
+                    # Con la clase subprocess y el método call, llamamos a un proceso de python. Esto lo hacemos para volver a ejecutar la ventana principal del programa:
+                    subprocess.call(["python", directorioDeTrabajo + "/Main.py"])
+
+            # A continuación, declaramos el botón que nos permitirá llevar a cabo la acción del método cerrarSesion():
+            bCerrarSesion = Button(self.__pestañaUsuarios, text="Cerrar sesión", height="3", width="30", bg="white", fg="navy",
+                                  font="Calibri", command=cerrarSesion)
+            bCerrarSesion.place(x=750, y=300, width=200, height=50)
             
             
             """

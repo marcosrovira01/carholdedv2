@@ -126,7 +126,7 @@ class VentanaPrincipal:
         #A dicho método, le entra un parámetro llamado target, en el que deberemos de 
         #indicar una función de otra clase para que dicha función sea un hilo. En este caso,
         #usamos la función iniciarThreadUsuarios() de la clase ThreadUsuarios:
-        usuarios=ThreadUsuarios(pestañaUsuarios, self.__correoElectronico)
+        usuarios=ThreadUsuarios(pestañaUsuarios, self.__correoElectronico, menuPrincipal)
         t1=threading.Thread(target=usuarios.iniciarThreadUsuarios())
         
         #3. Creamos el segundo hilo, el hilo compras, de la clase ThreadCompras:

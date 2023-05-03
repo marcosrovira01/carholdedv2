@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Implementada la conexión de la pestaña Compras con la nueva base de datos carholdedv2.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="messagebox para preguntar al usuario si realmente desea comprar el vehículo seleccionado añadido correctamente.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683130079085</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="messagebox para preguntar al usuario si realmente desea comprar el vehículo seleccionado añadido correctamente.">
+      <created>1683130439329</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1683130439329</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,6 +217,7 @@
     <MESSAGE value="Añadida tablaResumenCompras en la pestaña Usuarios de la aplicación." />
     <MESSAGE value="Implementada la conexión de la pestaña Ventas con la nueva base de datos carholdedv2." />
     <MESSAGE value="Implementada la conexión de la pestaña Compras con la nueva base de datos carholdedv2." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementada la conexión de la pestaña Compras con la nueva base de datos carholdedv2." />
+    <MESSAGE value="messagebox para preguntar al usuario si realmente desea comprar el vehículo seleccionado añadido correctamente." />
+    <option name="LAST_COMMIT_MESSAGE" value="messagebox para preguntar al usuario si realmente desea comprar el vehículo seleccionado añadido correctamente." />
   </component>
 </project>
