@@ -70,24 +70,9 @@ class ThreadCompras:
                 class_= ttk.Separator,
                 takefocus= 0    
             ).place(x=60, y=180, width=880, height=3)
-            
-            """
-            5. Insertamos un entry que actuará como buscador de vehículos por modelo llamado buscador:
-            """
-            buscador = Entry(self.__pestañaCompras, width="40", font=("Calibri", 14))
-            buscador.place(x=170, y = 220, width=300, height=40);
 
             """
-            6. Insertamos un botón que se llamará bBuscar, que realizará una búsqueda de vehículos disponibles en función del modelo:
-            """
-
-            bBuscar = Button(self.__pestañaCompras, text="Buscar vehículos", height="3", width="30", bg="white",
-                                 fg="navy", font="Calibri",
-                                 command=self.iniciarThreadCompras)
-            bBuscar.place(x=520, y=215, width=300, height=50)
-
-            """
-            4. Introducimos otro separador blanco con la clase ttk.Separator:
+            5. Introducimos otro separador blanco con la clase ttk.Separator:
             """
             estilosSeparador = ttk.Style()
             estilosSeparador.configure('TSeparator', background="white")
@@ -113,10 +98,10 @@ class ThreadCompras:
             #En el método configure, con el parámetro Treeview.Heading, indicamos que estamos dando dichos estilos al Heading de la tabla.
             estilosHeadingTabla = ttk.Style()
             estilosHeadingTabla.configure('Treeview.Heading', background="white", width=30, font="Calibri", foreground="black", padding=7)
-            
+
             #Creamos un widget Treeview en la pestañaCompras, que nos permitirá crear una tabla. Al widget le decimos que la tabla tendrá 6 columnas:
             tablaVehiculos = ttk.Treeview(self.__pestañaCompras, columns=("col1", "col2", "col3", "col4", "col5", "col6"), show="headings")
-    
+
             #Creamos las cabeceras de la tabla. La tabla mostrará los campos Modelo, Vendedor, Matricula, Marca, Color y Precio de la Base de datos:
             tablaVehiculos.heading("col1", text="Modelo")
             tablaVehiculos.heading("col2", text="Vendedor")
@@ -124,7 +109,7 @@ class ThreadCompras:
             tablaVehiculos.heading("col4", text="Marca")
             tablaVehiculos.heading("col5", text="Color")
             tablaVehiculos.heading("col6", text="Precio")
-            
+
             # Establecemos la anchura de cada columna:
             tablaVehiculos.column("col1", width=50)
             tablaVehiculos.column("col2", width=50)
@@ -132,19 +117,19 @@ class ThreadCompras:
             tablaVehiculos.column("col4", width=50)
             tablaVehiculos.column("col5", width=50)
             tablaVehiculos.column("col6", width=50)
-            
+
             #Creamos un nuevo objeto llamado "conexion", de la clase BaseDatosPrincipal, que se encargará de conectarse con la base de datos,
             #y le pasamos como parámetro el correo electrónico del usuario:
             conexion=BaseDatosPrincipal(self.__correoElectronico)
-            
+
             #Con el objeto conexión, que tiene como atributo el correo del usuario, llamamos al método obtenerRegistroTablaVehiculos
             #de la clase BaseDatosPrincipal, el cual nos devolverá todos los datos que hemos solicitado a la base de datos. Sin embargo, para poder leer
-            # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los 
+            # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los
             #resultantes de nuestra consulta:
             for modelo, vendedor, matricula, marca, color, precio in conexion.obtenerRegistroTablaVehiculos():
                 tablaVehiculos.insert("", 0, text="1", values=(modelo, vendedor, matricula, marca, color, str(precio) + ' €'))
-            
-            
+
+
             # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
             tablaVehiculos.tag_configure("oddrow", background="gray", font=("Calibri", 12), foreground="white")
             tablaVehiculos.tag_configure("evenrow", background="white", font=("Calibri", 12), foreground="grey")
@@ -153,19 +138,61 @@ class ThreadCompras:
                     tablaVehiculos.item(item, tags=("oddrow",))
                 else:
                     tablaVehiculos.item(item, tags=("evenrow",))
-            
+
             #Colocamos la tabla en nuestra interfaz gráfica con el método place:
             tablaVehiculos.place(x =10, y =390, width=980, height=300)
-            
+
             #Añadimos una barra de deslizamiento vertical para posteriormente colocarla en la tabla:
             scrollbar = ttk.Scrollbar(tablaVehiculos, orient="vertical", command=tablaVehiculos.yview)
             scrollbar.pack(side="right", fill="y")
-            
+
             #Insertamos la barra de deslizamiento vertical en su correspondiente tabla:
             tablaVehiculos.configure(yscrollcommand=scrollbar.set)
+
+            """
+            8. Insertamos la función que se encargará de buscar datos en la base de datos
+            """
+            def mostrarResultadosBusqueda():
+                #Primero, eliminamos todas las filas que han aparecido inicialmente:
+                tablaVehiculos.delete(*tablaVehiculos.get_children())
+
+                #Ejecutamos el método obtenerResultadoBusqueda() de la base de datos, que nos devolverá una serie de datos en función de la búsqueda realizada por el usuario.
+                #Si la lista resultante de la búsqueda no está vacía, insertamos los datos en la tabla. De lo contrario imprimimos un mensaje con messajebox indicando que
+                #no se encontraron resultados para la búsqueda:
+                if len(conexion.obtenerResultadoBusqueda(buscador.get()))!=0:
+
+                    #Insertamos los nuevos datos que son resultado de la búsqueda realizada por el usuario:
+                    for modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, precioBusqueda in conexion.obtenerResultadoBusqueda(buscador.get()):
+                        tablaVehiculos.insert("", 0, text="1", values=(modeloBusqueda, vendedorBusqueda, matriculaBusqueda, marcaBusqueda, colorBusqueda, str(precio) + ' €'))
+
+                    # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
+                    tablaVehiculos.tag_configure("oddrow", background="gray", font=("Calibri", 12),
+                                                 foreground="white")
+                    tablaVehiculos.tag_configure("evenrow", background="white", font=("Calibri", 12),
+                                                 foreground="grey")
+                    for i, item in enumerate(tablaVehiculos.get_children()):
+                        if i % 2 == 0:
+                            tablaVehiculos.item(item, tags=("oddrow",))
+                        else:
+                            tablaVehiculos.item(item, tags=("evenrow",))
+
+            """
+            9. Insertamos un entry que actuará como buscador de vehículos por modelo llamado buscador:
+            """
+            buscador = Entry(self.__pestañaCompras, width="40", font=("Calibri", 14))
+            buscador.place(x=170, y=220, width=300, height=40);
+
+            """
+            10. Insertamos un botón que se llamará bBuscar, que realizará una búsqueda de vehículos disponibles en función del modelo:
+            """
+
+            bBuscar = Button(self.__pestañaCompras, text="Buscar vehículos", height="3", width="30", bg="white",
+                             fg="navy", font="Calibri",
+                             command=mostrarResultadosBusqueda)
+            bBuscar.place(x=520, y=215, width=300, height=50)
             
             """
-            8. Tras insertar la tabla, insertamos un entry  llamado matriculaVehiculo para que el usuario introduzca la matrícula del vehículo que desea comprar:
+            11. Tras insertar la tabla, insertamos un entry  llamado matriculaVehiculo para que el usuario introduzca la matrícula del vehículo que desea comprar:
             """
             #insertamos previamente un label para indicar que a continuación el usuario debe de introducir la matrícula del coche que desea comprar:
             Label(self.__pestañaCompras, text="Introduzca la matrícula del vehículo \nque desea comprar, o seleccione uno:", bg="navy", fg="white", width="500", height="2", font=("Calibri", 16), anchor='w').place(x=120, y = 720, width=500, height=50);
@@ -175,27 +202,34 @@ class ThreadCompras:
             matriculaVehiculo.place(x =190, y = 790, width=250, height=30)
 
             """
-            9. Después del entry, insertamos una función llamada on_select que se ejecutará cuando se seleccione una fila del Treeview. 
+            12. Después del entry, insertamos una función llamada on_select que se ejecutará cuando se seleccione una fila del Treeview. 
             Lo que hará la función es reflejar la matrícula del vehículo seleccionado en el entry anterior:
             """
             def on_select(event):
-                # Obtenemos la fila seleccionada
-                fila = tablaVehiculos.selection()[0]
 
-                # Obtenemos los valores de la fila seleccionada
-                matriculaInsertar = tablaVehiculos.item(fila)["values"]
+                #Primero comprobamos si hay algún elemento en la fila:
+                seleccion = tablaVehiculos.selection()
 
-                # Actualizamos el contenido del Entry con el valor del campo "Matrícula"
-                matriculaVehiculo.delete(0, END)
-                matriculaVehiculo.insert(0, matriculaInsertar[2])
+                #Si hay algún elemento, entonces procedemos a insertar el elemento en el entry:
+                if seleccion:
+
+                    # Obtenemos la fila seleccionada
+                    fila = seleccion[0]
+
+                    # Obtenemos los valores de la fila seleccionada
+                    matriculaInsertar = tablaVehiculos.item(fila)["values"]
+
+                    # Actualizamos el contenido del Entry con el valor del campo "Matrícula"
+                    matriculaVehiculo.delete(0, END)
+                    matriculaVehiculo.insert(0, matriculaInsertar[2])
 
             """
-            10.Asociamos la función on_select al evento "Selection" del Treeview
+            13.Asociamos la función on_select al evento "Selection" del Treeview
             """
             tablaVehiculos.bind("<<TreeviewSelect>>", on_select)
 
             """
-            11. Previo a insertar el botón que realizará la compra, crearemos el método comprar(), que recopilará los datos del entry matriculaVehiculo introducidos
+            14. Previo a insertar el botón que realizará la compra, crearemos el método comprar(), que recopilará los datos del entry matriculaVehiculo introducidos
             por el usuario y creará un objeto de la clase BaseDatosPrincipal. En dicho objeto, entrarán como parámetros el correo del usuario y la matrícula 
             del vehículo que desea comprar. Además, ejecutará el método comprarVehículo() de la clase BaseDatosPrincipal() para llevar a cabo la compra.
             Posteriormente, en el bComprar, usaremos este método para llevar a cabo la compra:
@@ -235,7 +269,7 @@ class ThreadCompras:
                      
                 
             """
-            12. Insertamos el botón comprar, que comprará el vehículo solicitado por el usuario
+            15. Insertamos el botón comprar, que comprará el vehículo solicitado por el usuario
             en base a la matrícula introducida. El botón ejecutará el método comprar(), declarado anteriormente:
             """
             bComprar = Button(self.__pestañaCompras, text="Comprar Vehículo", height="3", width="30", bg="white", fg="navy", font="Calibri", 

@@ -549,5 +549,65 @@ class BaseDatosPrincipal:
                 tkinter.messagebox.showinfo(title="Error Inesperado", message="Ocurrió un error inesperado.")
                 
             return False
-            
+
+    """
+    Método obtenerResultadoBusqueda(): servirá para obtener los registros correspondientes de la búsqueda en la pestañaCompras.
+    
+    @args: self, modelo
+    -modelo: Será el modelo que introduzca el usuario para buscar vehículos en la base de datos.
+    """
+
+    def obtenerResultadoBusqueda(self, modelo):
+        """
+        Bloque try para controlar excepciones, por ejemplo, si no se puede conectar con la base de datos:
+        """
+        try:
+            """
+            Creamos un nuevo socket, que se conectará a la base de datos "carholdedv2", con usuario root, contraseña 2585 
+            y dirección del servidor localhost:
+            """
+            miConexion = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="2585",
+                database="carholdedv2"
+            )
+
+            """
+            Creamos un objeto cursor, que será el que contendrá la consulta
+            a la base de datos:
+            """
+            cursor = miConexion.cursor()
+
+            """
+            Realizamos la consulta a la base de datos, la cual obtendrá los registros solicitados para poder ser enviados a la "tablaVehículos" y ser mostrados.
+            Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo. La consulta obtendrá los campos Modelo, Vendedor,
+            Matrícula, Marca, Color y Precio en función de la búsqueda solicitada por el usuario:
+            """
+            sql = "select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Venta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='" + self.__correo + "'  and t1.Modelo like '%"+str(modelo)+"%' order by t1.Modelo asc"
+
+            """
+            Ejecutamos la consulta con el método execute()
+            """
+            cursor.execute(sql)
+
+            """
+            Ejecutamos el método fetchall() del objeto cursor y lo devolvemos con return. Como ya hemos comentado anteriormente, este método nos generará una tupla
+            con los valores que haya obtenido de la consulta que hemos ejecutado, por lo que, en realidad, estaremos devolviendo esa tupla con todos los datos resultan-
+            tes de la consulta anterior.
+            """
+            return cursor.fetchall()
+
+            """
+            cerramos la conexión con close():
+            """
+            miConexion.close()
+
+        except Exception as e:
+
+            """
+            Si ocurre cualquier tipo de excepción, la levantamos utilizando la palabra reservada raise, de forma que en el fragmento de código en el
+            que llamemos a este método, si ocurre una excepción, ese fragmento de código recibirá dicha excepción para poder tratarla adecuadamente.
+            """
+            raise e
             
