@@ -102,7 +102,7 @@ class VentanaPrincipal:
         
         #5. Incluímos la tercera pestaña y le añadimos los estilos previamente creados en el parámetro "style":
         pestañaVentas=ttk.Frame(panelPrincipal, style='Estilos.TFrame')
-        panelPrincipal.add(pestañaVentas, text='Ventas')
+        panelPrincipal.add(pestañaVentas, text='Dar de alta un vehículo')
         
         """
         5. Generamos estilos para los títulos de las pestañas con la clase

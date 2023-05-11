@@ -55,7 +55,7 @@ class ThreadVentas:
         4. Introducimos un label llamado labelPrincipal para indicar al usuario que los datos marcados con (*) son obligatorios,
          y lo centramos con anchor=w:
         """
-        labelPrincipal=Label(self.__pestañaVentas, text="Formulario de ventas.\n\n Nota: Los campos marcados con (*) \n son obligatorios:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
+        labelPrincipal=Label(self.__pestañaVentas, text="Formulario para dar de alta un vehículo.\n\n Nota: Los campos marcados con (*) \n son obligatorios:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
         labelPrincipal.place(x =200, y =10, width=600, height=150)
         labelPrincipal.config(anchor="center")
         
@@ -219,6 +219,6 @@ class ThreadVentas:
         17. A continuación insertamos el botón bVender, el cual ejecutará la función realizarVenta() declarada anteriormente:
         """
         bVender=ttk.Button()
-        bVender = Button(self.__pestañaVentas, text="Poner en\n Venta", height="3", width="30", bg="white", fg="navy", font="Calibri", 
+        bVender = Button(self.__pestañaVentas, text="Dar de Alta", height="3", width="30", bg="white", fg="navy", font="Calibri",
                         command=realizarVenta)
         bVender.place(x =400, y = 630, width=200, height=50)

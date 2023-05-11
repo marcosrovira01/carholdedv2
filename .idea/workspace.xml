@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionado problema de precios repetidos en tabla compras" />
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Versión beta v.2.0 de la aplicación">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -222,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683145079431</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Versión beta v.2.0 de la aplicación">
+      <created>1683145306231</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1683145306231</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,6 +273,7 @@
     <MESSAGE value="Buscador de vehículos por modelo implementado (funcional)" />
     <MESSAGE value="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda." />
     <MESSAGE value="Solucionado problema de precios repetidos en tabla compras" />
-    <option name="LAST_COMMIT_MESSAGE" value="Solucionado problema de precios repetidos en tabla compras" />
+    <MESSAGE value="Versión beta v.2.0 de la aplicación" />
+    <option name="LAST_COMMIT_MESSAGE" value="Versión beta v.2.0 de la aplicación" />
   </component>
 </project>
