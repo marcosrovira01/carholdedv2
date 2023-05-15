@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Versión beta v.2.0 de la aplicación">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadAltaVehiculos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -233,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683145306231</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña.">
+      <created>1683802749704</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1683802749704</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,7 +258,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Primer commit del proyecto base" />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del login." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del registro." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
@@ -274,6 +282,7 @@
     <MESSAGE value="Añadido mensaje de advertencia en el buscador de la pestañaCompras por si no se encontrasen resultados de búsqueda." />
     <MESSAGE value="Solucionado problema de precios repetidos en tabla compras" />
     <MESSAGE value="Versión beta v.2.0 de la aplicación" />
-    <option name="LAST_COMMIT_MESSAGE" value="Versión beta v.2.0 de la aplicación" />
+    <MESSAGE value="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña." />
+    <option name="LAST_COMMIT_MESSAGE" value="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña." />
   </component>
 </project>

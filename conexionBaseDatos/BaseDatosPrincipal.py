@@ -132,9 +132,9 @@ class BaseDatosPrincipal:
             
             """
             Realizamos la consulta a la base de datos, la cual obtendrá los registros solicitados en base al correo electrónico del usuario.
-            Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo:
+            Los resultados de la consulta irán ordenados por orden alfabético en función de la fecha de alta del vehículo:
             """
-            sql="select concat(t5.Nombre, ' ', t5.PrimerApellido, ' ', t5.SegundoApellido) as Comprador, t2.Fecha, t2.Importe, t3.Modelo from Usuarios as t1 inner join Venta as t2 on (t1.CodigoUsuario=t2.CodigoUsuario) inner join Vehiculos as t3 on (t2.Matricula=t3.Matricula) inner join Compra as t4 on (t3.Matricula=t4.Matricula) inner join Usuarios as t5 on (t4.CodigoUsuario=t5.CodigoUsuario) where t1.CorreoElectronico='"+self.__correo+"' order by t2.Fecha asc"
+            sql="select t2.Fecha, t2.Importe, t3.Modelo, t3.Vendido from Usuarios as t1 inner join Alta as t2 on (t1.CodigoUsuario=t2.CodigoUsuario) inner join Vehiculos as t3 on (t2.Matricula=t3.Matricula) where t1.CorreoElectronico='"+self.__correo+"' order by t2.Fecha asc"
             """
             Ejecutamos la consulta con el método execute()
             """
@@ -217,11 +217,11 @@ class BaseDatosPrincipal:
             raise e
     
     """
-    Método registrarVenta(): método que se encargará de registrar una venta realizada en la PestañaVentas de la aplicación.
+    Método registrarAlta(): método que se encargará de registrar cualquier alta realizada en la pestañaAltaVehiculos de la aplicación.
     
-    @return: Puede devolver True o False, dependiendo de si ha ocurrido un error o no durante la venta de un vehículo.
+    @return: Puede devolver True o False, dependiendo de si ha ocurrido un error o no durante el alta de un vehículo.
     """
-    def registrarVenta(self):
+    def registrarAlta(self):
         """
         Bloque try para controlar excepciones, por ejemplo, si no se puede conectar con la base de datos:
         """
@@ -282,13 +282,13 @@ class BaseDatosPrincipal:
             miConexion.commit()
 
             """
-            Por último, añadimos dicha venta a la tabla Ventas, que relaciona la tabla Vehículos con la tabla Usuarios en nuestra app
+            Por último, añadimos dicha venta a la tabla Altas, que relaciona la tabla Vehículos con la tabla Usuarios en nuestra app
             """
             #Previamente, necesitamos obtener la fecha actual. Esto lo hacemos con la clase date:
             fecha=date.today().strftime('%Y-%m-%d')
 
-            #Realizamos la consulta para insertar los valores (Fecha, Importe, CodigoUsuario y Matrícula en la tabla Venta:
-            ultimosql = "insert into Venta (Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
+            #Realizamos la consulta para insertar los valores (Fecha, Importe, CodigoUsuario y Matrícula en la tabla Alta:
+            ultimosql = "insert into Alta (Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
             ultimoval = (fecha, float(self.__precio), codigoVendedor, self.__matricula)
 
             """
@@ -382,7 +382,7 @@ class BaseDatosPrincipal:
             Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo. La consulta obtendrá los campos Modelo, Vendedor,
             Matrícula, Marca, Color y Precio:
             """
-            sql="select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Venta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='"+self.__correo+"' order by t1.Modelo asc"
+            sql="select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Alta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='"+self.__correo+"' order by t1.Modelo asc"
             
             """
             Ejecutamos la consulta con el método execute()
@@ -456,7 +456,7 @@ class BaseDatosPrincipal:
             """
             Obtenemos el codigo del Vendedor:
             """
-            cursor.execute("select t1.CodigoUsuario from Venta as t1 inner join Vehiculos as t2 on (t1.Matricula=t2.Matricula) where t2.Matricula='"+self.__matricula+"'")
+            cursor.execute("select t1.CodigoUsuario from Alta as t1 inner join Vehiculos as t2 on (t1.Matricula=t2.Matricula) where t2.Matricula='"+self.__matricula+"'")
             listaCodigoVendedor=cursor.fetchone()
             codigoVendedor=listaCodigoVendedor[0]  
             
@@ -479,7 +479,7 @@ class BaseDatosPrincipal:
                 """
                 A continuación, Ejecutamos las diversas operaciones  para llevar a cabo la compra:
                 """
-                #1. Agregamos la Compra realizada a la tabla "Compra de la base de datos"
+                #1. Agregamos la Compra realizada a la tabla "Compra" de la base de datos:
                 fecha = date.today().strftime('%Y-%m-%d')
 
                 sql1="insert into Compra(Fecha, Importe, CodigoUsuario, Matricula) values (%s, %s, %s, %s)"
@@ -583,7 +583,7 @@ class BaseDatosPrincipal:
             Los resultados de la consulta irán ordenados por orden alfabético en función del modelo de vehículo. La consulta obtendrá los campos Modelo, Vendedor,
             Matrícula, Marca, Color y Precio en función de la búsqueda solicitada por el usuario:
             """
-            sql = "select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Venta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='" + self.__correo + "'  and t1.Modelo like '%"+str(modelo)+"%' order by t1.Modelo asc"
+            sql = "select t1.Modelo, concat(t3.Nombre, ' ', t3.PrimerApellido, ' ', t3.SegundoApellido), t1.Matricula, t4.NombreMarca, t1.Color, t1.Precio from Vehiculos as t1 inner join Alta as t2 on (t1.Matricula=t2.Matricula)  inner join Usuarios as t3 on (t2.CodigoUsuario=t3.CodigoUsuario) inner join Marcas as t4 on (t1.CodigoMarca=t4.CodigoMarca) where t1.Vendido=0 and t3.CorreoElectronico!='" + self.__correo + "'  and t1.Modelo like '%"+str(modelo)+"%' order by t1.Modelo asc"
 
             """
             Ejecutamos la consulta con el método execute()

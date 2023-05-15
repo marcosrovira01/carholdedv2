@@ -3,7 +3,7 @@ Created on 7 feb 2023
 
 @author: marcthegamer
 
-Esta clase gestionará la última pestaña de la ventana principal de la aplicación. La pestaña "Ventas".
+    Esta clase gestionará la última pestaña de la ventana principal de la aplicación. La pestaña "Alta de vehículos".
 '''
 
 import os
@@ -16,24 +16,24 @@ from conexionBaseDatos.BaseDatosPrincipal import *
 import mysql.connector
 from mysql.connector.errors import IntegrityError
 
-class ThreadVentas:
+class ThreadAltaVehiculos:
     
     """
     Constructor: Entran como parámetros:
     
-    -pestañaVentas: Es la pestaña sobre la que se va a ejecutar este Thread.
+    -pestañaAltaVehiculos: Es la pestaña sobre la que se va a ejecutar este Thread.
     -correoElectronico: Es el correo del Usuario, que va a ser utilizado para las distintas consultas a la
     base de datos.
     """
-    def __init__(self, pestañaVentas, correoElectronico):
+    def __init__(self, pestañaAltaVehiculos, correoElectronico):
         
-        self.__pestañaVentas=pestañaVentas
+        self.__pestañaAltaVehiculos=pestañaAltaVehiculos
         self.__correoElectronico=correoElectronico
         
     """
-    iniciarThreadVentas(): Método que inicia el hilo "Ventas" en la pestaña que se pasa como parámetro.
+    iniciarThreadAltaVehiculos(): Método que inicia el hilo "AltaVehiculos" en la pestaña que se pasa como parámetro.
     """    
-    def iniciarThreadVentas(self):
+    def iniciarThreadAltaVehiculos(self):
         
         
         """
@@ -44,18 +44,18 @@ class ThreadVentas:
         """
         2. Creamos una imagen con la clase PhotoImage, y la redimensionamos
         con el método subsample(escala x, escala y). Posteriormente, la introducimos en el label
-        y la insertamos en la pestañaVentas con el método place():
+        y la insertamos en la pestañaAltaVehiculos con el método place():
         """
         self.imagen=PhotoImage(file=directorioDeTrabajo + "/imagenes/coche.png")
         self.imagen=self.imagen.subsample(2,2)
-        Label(self.__pestañaVentas, image=self.imagen, bg="navy").place(x =40, y =20, width=150, height=100)
+        Label(self.__pestañaAltaVehiculos, image=self.imagen, bg="navy").place(x =40, y =20, width=150, height=100)
         
         
         """
         4. Introducimos un label llamado labelPrincipal para indicar al usuario que los datos marcados con (*) son obligatorios,
          y lo centramos con anchor=w:
         """
-        labelPrincipal=Label(self.__pestañaVentas, text="Formulario para dar de alta un vehículo.\n\n Nota: Los campos marcados con (*) \n son obligatorios:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
+        labelPrincipal=Label(self.__pestañaAltaVehiculos, text="Formulario para dar de alta un vehículo.\n\n Nota: Los campos marcados con (*) \n son obligatorios:", bg="navy", fg="white", height="2", font=("Calibri", 18), anchor='w')
         labelPrincipal.place(x =200, y =10, width=600, height=150)
         labelPrincipal.config(anchor="center")
         
@@ -63,7 +63,7 @@ class ThreadVentas:
         estilosSeparador=ttk.Style()
         estilosSeparador.configure('TSeparator', background="white")
         ttk.Separator(
-            master=self.__pestañaVentas,
+            master=self.__pestañaAltaVehiculos,
             orient=HORIZONTAL,
             style='TSeparator',
             class_= ttk.Separator,
@@ -73,70 +73,70 @@ class ThreadVentas:
         """
         5. Insertamos un label para indicar que a continuación el usuario debe seleccionar una marca de las ya preestablecidas:
         """
-        Label(self.__pestañaVentas, text="Seleccione una marca: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=365, y = 220, width=300, height=40);
+        Label(self.__pestañaAltaVehiculos, text="Seleccione una marca: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=365, y = 220, width=300, height=40);
         
         """
         6. Insertamos un combobox con el nombre de las marcas de la tabla Marcas de la base de datos, que le permitirá al 
         usuario seleccionar una de las disponibles:
         """
-        seleccionarMarca = ttk.Combobox(self.__pestañaVentas, values=("Volswagen", "Audi", "Mercedes", "Renault", "Porche", "Seat", "Chevrolet", "BMW", "Nissan", "Citroen"), font=("Calibri", 14), state="readonly")
+        seleccionarMarca = ttk.Combobox(self.__pestañaAltaVehiculos, values=("Volswagen", "Audi", "Mercedes", "Renault", "Porche", "Seat", "Chevrolet", "BMW", "Nissan", "Citroen"), font=("Calibri", 14), state="readonly")
         seleccionarMarca.current(0)
         seleccionarMarca.place(x =402, y =270, width=200, height=30)
         
         """
         7. Insertamos un label para indicar que a continuación el usuario debe introducir la matrícula de su vehículo:
         """
-        Label(self.__pestañaVentas, text="Introduzca la matrícula \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=200, y = 340, width=500, height=45);
+        Label(self.__pestañaAltaVehiculos, text="Introduzca la matrícula \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=200, y = 340, width=500, height=45);
         
         """
         8. Introducimos un entry para que el usuario introduzca su matrícula:
         """
-        matriculaVehiculo=Entry(self.__pestañaVentas, width="40", font=("Calibri", 14))
+        matriculaVehiculo=Entry(self.__pestañaAltaVehiculos, width="40", font=("Calibri", 14))
         matriculaVehiculo.place(x =200, y = 406, width=250, height=30) 
         
         """
         9. Insertamos un label para indicar que a continuación el usuario debe introducir el modelo de su vehículo:
         """
-        Label(self.__pestañaVentas, text="Introduzca el modelo \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=557, y = 340, width=500, height=45);
+        Label(self.__pestañaAltaVehiculos, text="Introduzca el modelo \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=557, y = 340, width=500, height=45);
         
         """
         10. Introducimos un entry para que el usuario introduzca el modelo de su vehículo:
         """
-        modeloVehiculo=Entry(self.__pestañaVentas, width="40", font=("Calibri", 14))
+        modeloVehiculo=Entry(self.__pestañaAltaVehiculos, width="40", font=("Calibri", 14))
         modeloVehiculo.place(x =550, y = 406, width=250, height=30) 
         
         """
         11. Insertamos un label para indicar que a continuación el usuario debe introducir el color de su vehículo:
         """
-        Label(self.__pestañaVentas, text="Introduzca el color \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=225, y = 470, width=500, height=45);
+        Label(self.__pestañaAltaVehiculos, text="Introduzca el color \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=225, y = 470, width=500, height=45);
         
         """
         12. Introducimos un entry para que el usuario introduzca el color de su vehículo:
         """
-        colorVehiculo=Entry(self.__pestañaVentas, width="40", font=("Calibri", 14))
+        colorVehiculo=Entry(self.__pestañaAltaVehiculos, width="40", font=("Calibri", 14))
         colorVehiculo.place(x =200, y = 536, width=250, height=30)  
         
         """
         13. Insertamos un label para indicar que a continuación el usuario debe introducir el precio de su vehículo:
         """
-        Label(self.__pestañaVentas, text="Introduzca el precio \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=559, y = 470, width=500, height=45);
+        Label(self.__pestañaAltaVehiculos, text="Introduzca el precio \nde su vehículo: (*)", bg="navy", fg="white", width="300", height="2", font=("Calibri", 16), anchor='w').place(x=559, y = 470, width=500, height=45);
         
         """
         14. Introducimos un entry para que el usuario introduzca el precio de su vehículo:
         """
-        precioVehiculo=Entry(self.__pestañaVentas, width="40", font=("Calibri", 14))
+        precioVehiculo=Entry(self.__pestañaAltaVehiculos, width="40", font=("Calibri", 14))
         precioVehiculo.place(x =550, y = 536, width=250, height=30) 
         
         """
-        16. Insertamos una función llamada vender() que se ejecutará cuando presionemos el botón declarado a continuación de la misma. Esta función se encargará del proceso de venta
+        16. Insertamos una función llamada realizarAlta() que se ejecutará cuando presionemos el botón declarado a continuación de la misma. Esta función se encargará del proceso de alta
         de un vehículo.
         """
-        def realizarVenta():
+        def realizarAlta():
 
-            #Antes de comenzar el proceso de venta de un vehículo, preguntamos al usuario si realmente desea poner a la venta ese vehículo con un messagebox:
-            respuesta = messagebox.askquestion("Vender vehículo", "¿Está seguro de que quiere vender el vehículo introducido?")
+            #Antes de comenzar el proceso de alta de un vehículo, preguntamos al usuario si realmente desea dar de alta ese vehículo con un messagebox:
+            respuesta = messagebox.askquestion("Dar de alta", "¿Está seguro de que quiere dar de alta el vehículo introducido?")
 
-            #Si presiona en sí, entonces comenzamos el proceso de venta:
+            #Si presiona en sí, entonces comenzamos el proceso de alta:
             if respuesta == "yes":
 
                 #En primer lugar, creamos una variable llamada resultadoSeleccion para almacenar el resultado de la selección de marca del usuario:
@@ -192,13 +192,13 @@ class ThreadVentas:
                         #al cual le pasamos los parámetros correspondientes:
                         conexion=BaseDatosPrincipal(self.__correoElectronico, matricula, modelo, color, precio, codigoMarca)
 
-                        #Finalmente, ejecutamos el método registrarVenta() de la clase BaseDatosPrincipal:
+                        #Finalmente, ejecutamos el método registrarAlta() de la clase BaseDatosPrincipal:
                         #El método devuelve un booleano, que almacenaremos en la variable correcto:
-                        correcto=conexion.registrarVenta()
+                        correcto=conexion.registrarAlta()
 
                         if correcto:
-                            #si todo es correcto, imprimimos un mensaje de que el vehículo se ha puesto a la venta correctamente y borramos todos los campos:
-                            tkinter.messagebox.showinfo(title="Venta correcta", message="El vehículo se ha puesto a la venta de forma exitosa.")
+                            #si todo es correcto, imprimimos un mensaje de que el vehículo se ha dado de alta correctamente y borramos todos los campos:
+                            tkinter.messagebox.showinfo(title="Alta correcta", message="El vehículo se ha dado de alta de forma exitosa.")
                             borradoDatos()
 
                         else:
@@ -216,9 +216,9 @@ class ThreadVentas:
                     tkinter.messagebox.showinfo(title="Value Error", message="Alguno de los campos marcados con (*) se encuentra vacío")
                     borradoDatos()
         """
-        17. A continuación insertamos el botón bVender, el cual ejecutará la función realizarVenta() declarada anteriormente:
+        17. A continuación insertamos el botón bALta, el cual ejecutará la función realizarAlta() declarada anteriormente:
         """
-        bVender=ttk.Button()
-        bVender = Button(self.__pestañaVentas, text="Dar de Alta", height="3", width="30", bg="white", fg="navy", font="Calibri",
-                        command=realizarVenta)
-        bVender.place(x =400, y = 630, width=200, height=50)
+        bAlta=ttk.Button()
+        bAlta = Button(self.__pestañaAltaVehiculos, text="Dar de Alta", height="3", width="30", bg="white", fg="navy", font="Calibri",
+                         command=realizarAlta)
+        bAlta.place(x =400, y = 630, width=200, height=50)

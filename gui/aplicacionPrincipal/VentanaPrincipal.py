@@ -13,7 +13,7 @@ from tkinter import *
 from tkinter import ttk
 from gui.aplicacionPrincipal.ThreadUsuarios import *
 from gui.aplicacionPrincipal.ThreadCompras import *
-from gui.aplicacionPrincipal.ThreadVentas import *
+from gui.aplicacionPrincipal.ThreadAltaVehiculos import *
 import threading
 
 
@@ -79,7 +79,7 @@ class VentanaPrincipal:
         
         """
         4. A continuación, Insertamos 3 pestañas, que serán las 3 pestañas principales de nuestra aplicación: 
-        Ventana Usuarios, Ventana Compras y Ventana Ventas:
+        Pestaña Usuarios, Pestaña Compras y Pestaña Altas:
         """
         #1. Insertamos el panel para las pestañas con la clase Notebook, pasandole como parámetro la ventana actual,
         #y lo posicionamos con el método pack:
@@ -101,8 +101,8 @@ class VentanaPrincipal:
         panelPrincipal.add(pestañaCompras, text='Compras')
         
         #5. Incluímos la tercera pestaña y le añadimos los estilos previamente creados en el parámetro "style":
-        pestañaVentas=ttk.Frame(panelPrincipal, style='Estilos.TFrame')
-        panelPrincipal.add(pestañaVentas, text='Dar de alta un vehículo')
+        pestañaAltas=ttk.Frame(panelPrincipal, style='Estilos.TFrame')
+        panelPrincipal.add(pestañaAltas, text='Alta de vehículos')
         
         """
         5. Generamos estilos para los títulos de las pestañas con la clase
@@ -116,7 +116,7 @@ class VentanaPrincipal:
         estilosGenerales.map('TNotebook.Tab', background=[('selected', 'navy')], foreground=[('selected', 'white')])
         
         """
-        6. Creamos 3 hilos, para que las ventanas se ejecuten de forma simultánea y los lanzamos: 
+        6. Creamos 3 hilos, para que las pestañas se ejecuten de forma simultánea y los lanzamos: 
         """
         #1. Primero creamos una lista o array, que contendrá los 3 hilos:
         threads=[]
@@ -133,9 +133,9 @@ class VentanaPrincipal:
         compras=ThreadCompras(pestañaCompras, self.__correoElectronico)
         t2=threading.Thread(target=compras.iniciarThreadCompras())
         
-        #4. Creamos el tercer hilo, el hilo ventas, de la clase ThreadVentas:
-        ventas=ThreadVentas(pestañaVentas, self.__correoElectronico)
-        t3=threading.Thread(target=ventas.iniciarThreadVentas())
+        #4. Creamos el tercer hilo, el hilo AltaVehiculos, de la clase ThreadAltaVehiculos:
+        ventas=ThreadAltaVehiculos(pestañaAltas, self.__correoElectronico)
+        t3=threading.Thread(target=ventas.iniciarThreadAltaVehiculos())
         
         #5. A continuación, agregamos los hilos recién creados al array de hilos(threads) con
         #el método append():

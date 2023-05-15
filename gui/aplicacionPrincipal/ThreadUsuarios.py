@@ -153,19 +153,23 @@ class ThreadUsuarios:
             #Creamos un widget Treeview en la pestañaUsuarios, que nos permitirá crear una tabla. Al widget le decimos que la tabla tendrá 4 columnas:
             tablaResumenVentas = ttk.Treeview(self.__pestañaUsuarios, columns=("col1", "col2", "col3", "col4"), show="headings")
     
-            #Creamos las cabeceras de la tabla. La tabla mostrará los campos Comprador, Fecha, Importe y Modelo de la Base de datos:
-            tablaResumenVentas.heading("col1", text="Comprador")
-            tablaResumenVentas.heading("col2", text="Fecha")
-            tablaResumenVentas.heading("col3", text="Importe")
-            tablaResumenVentas.heading("col4", text="Modelo")
+            #Creamos las cabeceras de la tabla. La tabla mostrará los campos Fecha de Alta, Importe, Modelo y Vendido de la Base de datos:
+            tablaResumenVentas.heading("col1", text="Fecha de Alta")
+            tablaResumenVentas.heading("col2", text="Importe")
+            tablaResumenVentas.heading("col3", text="Modelo")
+            tablaResumenVentas.heading("col4", text="Vendido")
             
             #Con el objeto conexión, que tiene como atributo el correo del usuario, y en base a este mismo, llamamos al método obtenerRegistroTablaResumenVentas
             #de la clase BaseDatosPrincipal, el cual nos devolverá todos los datos que hemos solicitado a la base de datos. Sin embargo, para poder leer
             # e insertar todos registros en la tabla, lo deberemos de hacer con un bucle for, ya que si no, solo insertaremos un registro y no todos los 
             #resultantes de nuestra consulta:
-            for comprador, fecha, importe, modelo in conexion.obtenerRegistroTablaResumenVentas():
+            for fecha, importe, modelo, vendido in conexion.obtenerRegistroTablaResumenVentas():
                 importe = str(importe) + '€'
-                tablaResumenVentas.insert("", 0, text="1", values=(comprador, fecha, importe, modelo))
+                if vendido==1:
+                    vendido_str='Si'
+                else:
+                    vendido_str='No'
+                tablaResumenVentas.insert("", 0, text="1", values=(fecha, importe, modelo, vendido_str))
             
             
             # Establecemos alternancia de colores gris y blanco en cada registro de la tabla con el método tag_configure:
@@ -206,7 +210,7 @@ class ThreadUsuarios:
                                               show="headings")
 
             # Creamos las cabeceras de la tabla. La tabla mostrará los campos Fecha, Importe, Modelo y Marca de la Base de datos:
-            tablaResumenCompras.heading("col1", text="Fecha")
+            tablaResumenCompras.heading("col1", text="Fecha de Compra")
             tablaResumenCompras.heading("col2", text="Importe")
             tablaResumenCompras.heading("col3", text="Modelo")
             tablaResumenCompras.heading("col4", text="Marca")
