@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/conexionBaseDatos/BaseDatosPrincipal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadUsuarios.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadVentas.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadAltaVehiculos.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/VentanaPrincipal.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +45,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/marcthegamer/Escritorio/carholdedv2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Errors&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -242,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683802749704</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña.">
+      <created>1684181073518</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1684181073518</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,7 +262,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Solucionada conexión con nueva base de datos respeto del login." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del registro." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
     <MESSAGE value="Añadido icono de volver atrás al repositorio del proyecto." />
@@ -283,6 +286,7 @@
     <MESSAGE value="Solucionado problema de precios repetidos en tabla compras" />
     <MESSAGE value="Versión beta v.2.0 de la aplicación" />
     <MESSAGE value="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña." />
-    <option name="LAST_COMMIT_MESSAGE" value="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña." />
+    <MESSAGE value="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña." />
+    <option name="LAST_COMMIT_MESSAGE" value="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña." />
   </component>
 </project>
