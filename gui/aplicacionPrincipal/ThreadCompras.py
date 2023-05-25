@@ -87,8 +87,7 @@ class ThreadCompras:
             """
             6.Insertamos un botón que se llamará bActualizar, que ejecutará el método iniciarThreadCompras() para actualizar los datos de la tablaVehiculos:
             """
-            bActualizar = Button(self.__pestañaCompras, text="Actualizar Vehículos", height="3", width="30", bg="white", fg="navy", font="Calibri", 
-                                command=self.iniciarThreadCompras)
+            bActualizar = Button(self.__pestañaCompras, text="Actualizar Vehículos", height="3", width="30", bg="white", fg="navy", font="Calibri", command=self.iniciarThreadCompras)
             bActualizar.place(x =350, y = 322.5, width=300, height=50)
             
             """

@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña.">
+    <list default="true" id="d8258ee1-b017-4a2a-8c0f-53cd11a02344" name="Changes" comment="Solucionado problema con la clase Main del programa que provocaba errores en tiempo de ejecución">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui/aplicacionPrincipal/ThreadCompras.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,17 +37,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/marcthegamer/Escritorio/carholdedv2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places",
+    "last_opened_file_path": "/home/marcthegamer/Escritorio/carholdedv2",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -246,7 +246,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684181073518</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Solucionado problema con la clase Main del programa que provocaba errores en tiempo de ejecución">
+      <created>1684323462778</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1684323462778</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Solucionado problema con la clase Main del programa que provocaba errores en tiempo de ejecución">
+      <created>1684323554442</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1684323554442</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -262,7 +276,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Solucionada conexión con nueva base de datos respeto del registro." />
     <MESSAGE value="Solucionada conexión con nueva base de datos respeto del borrado de usuarios." />
     <MESSAGE value="Añadido icono de volver atrás al repositorio del proyecto." />
     <MESSAGE value="Botón volver atrás en formulario login implementado (aún no funcional)" />
@@ -287,6 +300,7 @@
     <MESSAGE value="Versión beta v.2.0 de la aplicación" />
     <MESSAGE value="Actualizados los textos de la pestaña &quot;Ventas&quot;. Ahora som mucho más claros y se comprende mejor cuál es el objetivo de dicha pestaña." />
     <MESSAGE value="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ahora la &quot;Pestaña de Ventas&quot; pasa a llamarse &quot;Pestaña de Altas&quot;. También se ha modificado todo lo relacionado con dicha pestaña." />
+    <MESSAGE value="Solucionado problema con la clase Main del programa que provocaba errores en tiempo de ejecución" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solucionado problema con la clase Main del programa que provocaba errores en tiempo de ejecución" />
   </component>
 </project>
